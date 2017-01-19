@@ -1,9 +1,10 @@
 # Papers 
-============
+----
+-----
 
 ## Batch Normalization 2015
 ------------
-    [[Batch Normalization 2015]](https://github.com/saiprabhakar/Papers/blob/master/files/1502.03167v3.pdf)
+  [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://github.com/saiprabhakar/Papers/blob/master/files/1502.03167v3.pdf)
 
 ### Problem: Internal covariance shift
 
@@ -48,3 +49,39 @@
 * More theoritical analysis
 
 * Application to domain adaptation
+
+----
+-----
+## ModDrop 2014
+-----
+
+  [ModDrop: adaptive multi-modal gesture recognition](https://arxiv.org/abs/1501.00102)
+
+### Notes
+
+* Modalities (as a whole) are dropped with a probability during training
+* They are trained without fusing during pretraining and are not droped at this point
+* cross modal connections are introduced at training stage
+* Dropping is only at the input layer
+* Rescaling?
+
+### Notes from citation
+
+* Out Performs Dropout
+* Combining with dropout gives higher performance
+
+----
+-----
+
+## ModOut 2016
+---
+
+  [Modout: Learning to Fuse Modalities via Stochastic Regularization](http://openjournals.uwaterloo.ca/index.php/vsl/article/view/103)
+
+### Notes
+
+* Learns the probability of fusing modalities
+* Connection between modalities btwn adjacent layers are dropped with a probability
+* Dropping can be done in any layer
+* No. of extra parameters to learn are small Nm*(Nm-1), where Nm is the number of modalities
+* Very similar to **Blockout**
