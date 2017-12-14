@@ -17,7 +17,7 @@ Dataet: Goofle voice search tasl
 * Extra noise during training and testing
 * Sampling trick for training PBLSTM
 * Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) [Know about rescoring](#rescoring)
-* Async stoc gradient descent (#asyc)
+* Async stoc gradient descent [aync](#asyc)
 
 ### Suggestions
 * Convolution filters can improve the results [TODO](#20paper) :punch:
@@ -26,7 +26,6 @@ Dataet: Goofle voice search tasl
 ---
 
 ## [Connectionist Temporal Classification](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) (2006) (Swiz+germany)
-[CTC](#ctc)
 
 RNN -> Phonemes -> prefix search decoding
 No conditional independence assumption like DNN-HMMs (Bengio 1999) :punch:
