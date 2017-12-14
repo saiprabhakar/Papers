@@ -1,10 +1,6 @@
 # Papers 
 ---
 ---
-## CLDNN-HMM
-(#cldnn-hmm)
----
----
 
 ## Batch Normalization 2015
 ---
@@ -121,3 +117,23 @@
 10.3, 14.5% WER compared to 8% state of the art [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
 [click here](#cldnn-hmm)
 
+Dataet: Goofle voice search tasl
+
+Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
+
+Extra noise during training and testing
+Sampling trick for training PBLSTM
+Beam search(no dictionary was used) + LM based rescoring (very effective) [Know about rescoring](#rescoring)
+
+---
+---
+## CLDNN-HMM
+(#cldnn-hmm)
+TODO
+
+---
+---
+## Efficient Lattice rescoring using RNN LM ... (cambridge) (2014)
+(#rescoring)
+
+TODO
