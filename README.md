@@ -2,7 +2,7 @@
 ---
 ---
 ## CLDNN-HMM
-(#CLDNN-HMM)
+(#cldnn-hmm)
 ---
 ---
 
@@ -119,5 +119,5 @@
 ## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
 
 10.3, 14.5% WER compared to 8% state of the art [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
-[click here](#CLDNN-HMM)
+[click here](#cldnn-hmm)
 
