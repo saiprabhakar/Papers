@@ -119,33 +119,33 @@
 
 Dataet: Goofle voice search tasl
 
-Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
-No conditional independence assumption like CTC 
-No concept of phonemes
-
-Extra noise during training and testing
-Sampling trick for training PBLSTM
-Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) [Know about rescoring](#rescoring)
-Async stoc gradient descent (#asyc)
+* Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
+* No conditional independence assumption like CTC 
+* No concept of phonemes
+* 
+* Extra noise during training and testing
+* Sampling trick for training PBLSTM
+* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) [Know about rescoring](#rescoring)
+* Async stoc gradient descent (#asyc)
 
 
 ### Suggestions
-Convolution filters can improve the results [TODO](#20paper)
-Bad on short and long utterances [TODO](#15paper) :punch:
+* Convolution filters can improve the results [TODO](#20paper) :punch:
+* Bad on short and long utterances [TODO](#15paper) :punch:
 
 
 
 
 ## Async stoc gradient descent
 (#asyc)
-TODO
+:punch:
 
 ---
 ---
+
 ## CLDNN-HMM
 (#cldnn-hmm)
-TODO
-
+:punch:
 
 ---
 ---
