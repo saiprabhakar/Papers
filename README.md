@@ -3,7 +3,6 @@
 ---
 
 ## Batch Normalization 2015
----
   [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://github.com/saiprabhakar/Papers/blob/master/files/1502.03167v3.pdf)
 ### Problem: Internal covariance shift
 
@@ -38,11 +37,7 @@
 * Application to domain adaptation
 
 ---
----
 ## ModDrop 2014
----
-
-
 
 [ModDrop: adaptive multi-modal gesture recognition](https://arxiv.org/abs/1501.00102)
 ### Notes
@@ -59,10 +54,8 @@
 * Combining with dropout gives higher performance
 
 ---
----
-
 ## ModOut 2016
----
+
   [Modout: Learning to Fuse Modalities via Stochastic Regularization](http://openjournals.uwaterloo.ca/index.php/vsl/article/view/103)
 ### Notes
 
@@ -73,10 +66,8 @@
 * Very similar to **Blockout**
 
 ---
----
 
 ## ICNN 2016
----
   [Input Convex Neural Networks](https://arxiv.org/abs/1609.07152)
 ### Notes
 
@@ -108,8 +99,6 @@
 * Can complete face (fix some inputs while solve for others)
 * Classification task need more investigation
 
-
----
 ---
 
 ## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
@@ -128,19 +117,30 @@ Dataet: Goofle voice search tasl
 * Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) [Know about rescoring](#rescoring)
 * Async stoc gradient descent (#asyc)
 
-
 ### Suggestions
 * Convolution filters can improve the results [TODO](#20paper) :punch:
 * Bad on short and long utterances [TODO](#15paper) :punch:
 
+---
 
+## [Connectionist Temporal Classification](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) (2006) (Swiz+germany)
+[CTC](#ctc)
 
+RNN -> Phonemes -> prefix search decoding
+No conditional independence assumption like DNN-HMMs (Bengio 1999) :punch:
+
+### Contributions:
+Efficient decoding
+Good training algorithm
+
+:trollface: readmore
+
+---
 
 ## Async stoc gradient descent
 (#asyc)
 :punch:
 
----
 ---
 
 ## CLDNN-HMM
@@ -148,10 +148,32 @@ Dataet: Goofle voice search tasl
 :punch:
 
 ---
----
-
----
----
 ## Efficient Lattice rescoring using RNN LM ... (cambridge) (2014)
 (#rescoring)
-TODO
+
+Rescoring methods:
+* n-gram style clusteing of history contexts
+  - data sparsity issues
+  - large context leads to exponential size growth
+* distance in hidden history vectors
+  - [RNNLM](#rnnlm) & and FFNNLM :punch: readmore
+
+:trollface: readmore
+
+---
+## [Predix tree based N-best list ... ]() China 2013
+
+RNNLM is time consuming so is used to resore only some of the n-best list
+
+obj: Speed up RNNLM when used to rerandk a large n-best list
+Prefix Tree based N-best list rescoring (PTNR)
+  - avoid redundant computations
+  - Bunch mode
+
+related:
+FFLMs -> faster paper10ref :punch:
+RNN-ME -> RNN on large dataset paper12ref :punch: 
+RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
+
+
+:trollface: readmore
