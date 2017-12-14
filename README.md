@@ -108,3 +108,8 @@
 * Can complete face (fix some inputs while solve for others)
 * Classification task need more investigation
 
+
+---
+---
+
+## Listen Attend and Spell (2015) Google Brain [.] (https://arxiv.org/abs/1508.01211)
