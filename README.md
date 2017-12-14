@@ -7,12 +7,11 @@
 
 10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
 
-Dataet: Goofle voice search tasl
+Dataet: Google voice search tasl
 
 * Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
 * No conditional independence assumption like CTC 
 * No concept of phonemes
-* 
 * Extra noise during training and testing
 * Sampling trick for training PBLSTM
 * Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
@@ -27,12 +26,12 @@ Dataet: Goofle voice search tasl
 
 ## [Connectionist Temporal Classification](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) (2006) (Swiz+germany)
 
-RNN -> Phonemes -> prefix search decoding
-No conditional independence assumption like DNN-HMMs (Bengio 1999) :punch:
+* RNN -> Phonemes -> prefix search decoding
+* No conditional independence assumption like DNN-HMMs (Bengio 1999) :punch:
 
 ### Contributions:
-Efficient decoding
-Good training algorithm
+* Efficient decoding
+* Good training algorithm
 
 :trollface: readmore
 
@@ -69,15 +68,15 @@ Rescoring methods:
 
 RNNLM is time consuming so is used to resore only some of the n-best list
 
-obj: Speed up RNNLM when used to rerandk a large n-best list
-Prefix Tree based N-best list rescoring (PTNR)
+* obj: Speed up RNNLM when used to rerandk a large n-best list
+* Prefix Tree based N-best list rescoring (PTNR)
   - avoid redundant computations
   - Bunch mode
 
 related:
-FFLMs -> faster paper10ref :punch:
-RNN-ME -> RNN on large dataset paper12ref :punch: 
-RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
+* FFLMs -> faster paper10ref :punch:
+* RNN-ME -> RNN on large dataset paper12ref :punch: 
+* RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
 
 
 :trollface: readmore
