@@ -5,8 +5,7 @@
 
 ## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
 
-10.3, 14.5% WER compared to 8% state of the art [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
-[click here](#cldnn-hmm)
+10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
 
 Dataet: Goofle voice search tasl
 
@@ -16,7 +15,8 @@ Dataet: Goofle voice search tasl
 * 
 * Extra noise during training and testing
 * Sampling trick for training PBLSTM
-* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) [Know about rescoring](#rescoring-1)
+* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
+[Know about rescoring](#rescoring-1)
 * Async stoc gradient descent [aync](#asyc)
 
 ### Suggestions
@@ -39,18 +39,18 @@ Good training algorithm
 ---
 
 ## Async stoc gradient descent
-(#asyc)
+#### asyc
 :punch:
 
 ---
 
-## CLDNN-HMM
-(#cldnn-hmm)
+## [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
+#### cldnn-hmm
 :punch:
 
 ---
 ## [EFFICIENT LATTICE RESCORING USING RECURRENT NEURAL NETWORK LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/xl207_ICASSP14a.pdf) (cambridge) (2014)
-(#rescoring-1)
+#### rescoring-1
 
 Rescoring methods:
 * n-gram style clusteing of history contexts
@@ -63,10 +63,11 @@ Rescoring methods:
 
 ---
 
-## [Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013
+## [Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
+
+#### RNNLM
 
 RNNLM is time consuming so is used to resore only some of the n-best list
-(#rnnlm)
 
 obj: Speed up RNNLM when used to rerandk a large n-best list
 Prefix Tree based N-best list rescoring (PTNR)
