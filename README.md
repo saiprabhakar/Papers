@@ -71,15 +71,35 @@ RNNLM is time consuming so is used to resore only some of the n-best list
 * obj: Speed up RNNLM when used to rerandk a large n-best list
 * Prefix Tree based N-best list rescoring (PTNR)
   - avoid redundant computations
-  - Bunch mode
+  - [Bunch Mode](#bunch-mode)
 
 related:
 * FFLMs -> faster paper10ref :punch:
 * RNN-ME -> RNN on large dataset paper12ref :punch: 
 * RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
 
+PTNR:
+* Represent hypothesis in a prefix tree thus all the LM prob for the nodes can be computed in a single forward pass preventing any redundant computation.
+* Each node in the tree needs to store only hidden value and its state (if the node is not explored)
 
-:trollface: readmore
+#### Bunch Mode
+(block operations)
+* speeding up training o0f FF-NNLM
+* several words are processed at the same time using matrix\*matrix multiplcation rather than vector\*matrix multiplication
+* Uses BLAS library
+* 10 times faster training with slight loss of perplexity
+
+PTRN + Bunch Mode slightly complicated using class-based RNNLM #paper11ref :punch:
+
+ASR here uses two-pass search strategy:
+* first pass: decoder uses weak LM (3-gram lm) to generate multiple recog hypothesis -> word lattice
+* word lattice -> n-best hypothesis
+* second pass: powerful LM used to re-score hypothesis -> best hypothesis
+
+Acoustic modelinhg and feature settings as done in :punch: paperref25
+setting training param in :punch: paperref28
+Rescoring using linear combination of 4-gm lm and rnnlm -> 1.2% WER reduction using 100-best list
+Much faster than standard rescoring approach. Speed up increases with n in n-best list
 
 ---
 
