@@ -1,5 +1,24 @@
 # Papers 
 ---
+## [Deep EHR: A Survey of Recent Advances on Deep Learning Techniques for Electronic Health Record (EHR) Analysis](https://arxiv.org/pdf/1706.03446.pdf) (UofF 2017)
+
+types of EHRs:
+* basic EHRs without clinical notes
+* basic EHRs with clinical notes
+* comprehensice systems
+
+EHR Information Extraction (IE):
+* :trollface:
+
+:boom:
+
+
+---
+
+## [Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
+#### asyc
+:boom:
+
 ---
 
 
@@ -34,12 +53,6 @@ Dataet: Google voice search tasl
 * Good training algorithm
 
 :trollface: readmore
-
----
-
-## Async stoc gradient descent
-#### asyc
-:punch:
 
 ---
 
