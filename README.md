@@ -7,11 +7,81 @@ types of EHRs:
 * basic EHRs with clinical notes
 * comprehensice systems
 
-EHR Information Extraction (IE):
-* :trollface:
+EHR Information Extraction (IE): Extracting information from clinical notes which is unstructed
+* Single Concept Extraction: Tag each words into categories
+  - RNNs out perform CRFs
+* Temporal Event Extraction: Notion of time to extracted EHR concepts
+  - RNNs perform okish
+* Relation Extraction: Relation between EHR concepts
+  - Autoencoder generated inputs to CRFs -> sofart
+* Abbreviation Expansion: 
+  - custom word embedding using medical articles
+
+EHR Representation Learning: mapping codes for medical concepts
+* concept representation: learn EHR concept vetors to capture similarities and clusters in medical clusters using sparse medical codes
+  - Embeddings
+  - Latent Encoding: AEs, RBMs are better at encoding
+* Patient Representation: Getting vector representations of patients
+  - embeddings or AEs (on ordered sequences of codes)
+    - can be used to predict unplanned visits
+    - [Med2Vec](med2vec)
+  - LDAs on clinical notes
+  - Embeddings
+    - Sentence embedding on clinical notes
+    - patient temporal diagnosis (better than the intervention codes)
+    - intervention codes
+* Outcome Prediction:
+  - Static or one-time prediction: using data from single encounter
+    - classification using embeddings (best)
+    - embeddings learned from full EHR data is better than using diagnostic codes
+  - temporal outcome prediction: over a period of time
+    - CNN on temporal matrices of medical codes
+    - LSTMs (target replication and auxiliary targets :punch: paperref49)
+    - Predicting Doctor's behavior
+    - Postoperative responses
+* Computational Phenotyping: better disease descriptions from data
+  - New phenotype discovery
+    - AEs on raw data
+    - CNN and patient representation
+  - improving existing definitions: 
+    - using supervise learning
+    - LSTMs
+* Clinical Data De-identification: removing personal data from clinical data in EHR
+  - LSTM with character level + word level embeddings
+  - ensemble of RBMs
+  - NERs
+  
+Interpretability: clinical domain transparency is important  
+linear models still dominate clinical informatics  
+lack of interpretability is a imp limitation
+* Maximum activation: in image processing
+* Constraints: 
+  - [Med2Vec](med2vec)  
+  - non-negativity on learned code representions then examining k most significant elements
+  - non-neg on weights
+  - structural smoothness by using hierachial features :punch: paperref23
+* Qualitative clustering: 
+  - visualization using t-SNE
+* Mimic Learning
+  - Train a new model using data and deep net
+
+Summary and future work:
+* Data hetrogenity: (text, codes, billing info, demographics)
+* Irregular measure: varying time scale
+* Clinical text: difficult to use
+  - Extracting structure paperref15,16,34,35,38,39 :boom: :punch:
+* patient de-identification
+* Benchmarks: Different dataset used in diff works
+* Interpretability
+
+
+:punch: incremental training prcedure (adding neurons to the final layer)
+
+---
+## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568)
+#### Med2Vec
 
 :boom:
-
 
 ---
 
