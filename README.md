@@ -24,7 +24,7 @@ EHR Representation Learning: mapping codes for medical concepts
 * Patient Representation: Getting vector representations of patients
   - embeddings or AEs (on ordered sequences of codes)
     - can be used to predict unplanned visits
-    - [Med2Vec](med2vec)
+    - [Med2Vec](#med2vec)
   - LDAs on clinical notes
   - Embeddings
     - Sentence embedding on clinical notes
@@ -56,7 +56,7 @@ linear models still dominate clinical informatics
 lack of interpretability is a imp limitation
 * Maximum activation: in image processing
 * Constraints: 
-  - [Med2Vec](med2vec)  
+  - [Med2Vec](#med2vec)  
   - non-negativity on learned code representions then examining k most significant elements
   - non-neg on weights
   - structural smoothness by using hierachial features :punch: paperref23
@@ -69,13 +69,93 @@ Summary and future work:
 * Data hetrogenity: (text, codes, billing info, demographics)
 * Irregular measure: varying time scale
 * Clinical text: difficult to use
-  - Extracting structure paperref15,16,34,35,38,39 :boom: :punch:
+  - Extracting structure
+    - [Medical entity identificaion](#medent), 
+    - [medical event det](#medevent),
+    - paperref34 Ner in clinical text :punch:
+    - [Clinical temporal information extraction](#clintemp)
+    - [Clinical relation extraction](#clinrel)
+    - [Learning embeddings for clinical abbr expansion](#clinabbr)
 * patient de-identification
 * Benchmarks: Different dataset used in diff works
 * Interpretability
 
-
 :punch: incremental training prcedure (adding neurons to the final layer)
+
+---
+## [“Exploiting Task-Oriented Resources to Learn Word Embeddings for Clinical Abbreviation Expansion](https://nlp.cs.rpi.edu/paper/bionlp15.pdf) RPI, 2015
+#### clinabbr
+
+Abbr are ambiguous especially in intensive care  
+embedding for abbr and their expansion should have similar embedding
+
+:trollface:
+
+---
+## [Brundlefly at SemEval-2016 Task 12: Recurrent Neural Networks vs. Joint Inference for Clinical Temporal Information Extraction](https://arxiv.org/pdf/1606.01433.pdf) Stanford 2016
+#### clintemp
+
+phase 1: text span of time and event expression in clinical notes  
+  - joint inference-based approach outperform naive RNN
+  - timeline ordering of all events in a document
+  - Using DeepDive framework (zhang 2015) :boom:
+phase 2: relation btw an event and its parent document creation time
+  - combination of data canonization and distance supervision rules  
+:trollface:
+
+---
+## [“Clinical Relation Extraction with Deep Learning](https://pdfs.semanticscholar.org/7fac/52a9b0f96fcee6972cc6ac4687068442aee8.pdf) Harbin China 2016
+
+#### clinrel
+
+Relations between medical concepts  
+Concept identification (NER) -> relation classification using CRFs
+
+Relations:
+* problem-treatment
+  - treatment imporves problem
+  - ...
+* problem-test
+  - test reveals problem
+  - ...
+* problem-problem
+  - problem incdicates problem 
+  - ...
+
+:trollface:
+
+---
+## [Structured prediction models for RNN based sequence labeling in clinical text](https://arxiv.org/abs/1608.00612) UofM, 2016
+#### medent
+
+Extraction of medical entities such as medication, indication, and side-effects from EHR narratives  
+RNN based feature extractors  
+Model CRF pairwise potentials using NN
+
+Usually ppl use CRFs, HMMs, NN for information extraction from unstructed text  
+Graphical models predict entire label sequence jointly but require hand crafted features for good results  
+NN can find patterns but predict word label in isolation
+
+Huang et al. 2015 combined CRFs and NN for NERs :punch: :boom: (not good on exact phrase labelling)
+
+Challenges: 
+* extraction of exact medical term is important
+* Long tail stuffs are also important
+* Long term dependencies between text terms
+
+:trollface: :boom: 
+
+---
+## [Bidirectional RNN for Medical Event Detection in Electronic Health Records](http://www.aclweb.org/anthology/N16-1056) UofM, 2016
+#### medevent
+
+SofArt uses CRFs  
+Obj: RNNs outperform CRFs for medication, diagnosis and adverse drug event
+
+EHRs are noisy, have incomplete sentences/phrases, and irregular use of language, have lots of abber ...   
+graphical model does not use long term informations  
+
+:trollface: :boom: 
 
 ---
 ## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568)
