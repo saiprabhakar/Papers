@@ -1,5 +1,3 @@
-# Papers 
----
 ## [Deep EHR: A Survey of Recent Advances on Deep Learning Techniques for Electronic Health Record (EHR) Analysis](https://arxiv.org/pdf/1706.03446.pdf) (UofF 2017)
 
 types of EHRs:
@@ -105,7 +103,6 @@ phase 2: relation btw an event and its parent document creation time
 
 ---
 ## [“Clinical Relation Extraction with Deep Learning](https://pdfs.semanticscholar.org/7fac/52a9b0f96fcee6972cc6ac4687068442aee8.pdf) Harbin China 2016
-
 #### clinrel
 
 Relations between medical concepts  
@@ -226,7 +223,6 @@ Rescoring methods:
 ---
 
 ## [Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
-
 #### RNNLM
 
 RNNLM is time consuming so is used to resore only some of the n-best list
