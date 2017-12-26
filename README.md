@@ -140,7 +140,30 @@ Challenges:
 * Long tail stuffs are also important
 * Long term dependencies between text terms
 
-:trollface: :boom: 
+* m1: embedding + Bi-LSTM + softmax (baseline)
+* m2: embedding + Bi-LSTM -> CRF  
+unary potential (lstm output) + binary potential (matrix)
+using matrix is bad (long tail)   
+* m3: embedding + Bi-LSTM -> CRF (pairwise modelling) 
+1D CNN (2\*1) for modelling binary potential  
+* m4: Approximate skip-chain CRF  
+skip-chain to get long term dep :punch: sutton & mccallum 2006  
+Exact inference is intractable -> approx sol  
+every iteration of grad des need multiple Belief propagation loop iteration -> costly  
+lin et al, 2015 :punch: solves it... this paper uses a variation of lin's work  
+:boom: read more  
+
+Labels
+* Medical event
+  - drug name
+  - disease
+  - ... 
+* Attributes
+  - severity
+  - routine
+  - ...
+  
+Skip-Chain CRF (0.8210 for strict and 0.8632 for relaxed evaluation
 
 ---
 ## [Bidirectional RNN for Medical Event Detection in Electronic Health Records](http://www.aclweb.org/anthology/N16-1056) UofM, 2016
