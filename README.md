@@ -122,7 +122,7 @@ Relations:
 :trollface:
 
 ---
-## [Structured prediction models for RNN based sequence labeling in clinical text](https://arxiv.org/abs/1608.00612) UofM, 2016
+## [Structured prediction models for RNN based sequence labeling in clinical text](https://arxiv.org/abs/1608.00612) UofM, Aug 2016
 #### medent
 
 Extraction of medical entities such as medication, indication, and side-effects from EHR narratives  
@@ -140,6 +140,9 @@ Challenges:
 * Long tail stuffs are also important
 * Long term dependencies between text terms
 
+** Private dataset?
+
+models:
 * m1: embedding + Bi-LSTM + softmax (baseline)
 * m2: embedding + Bi-LSTM -> CRF  
 unary potential (lstm output) + binary potential (matrix)
@@ -163,10 +166,12 @@ Labels
   - routine
   - ...
   
-Skip-Chain CRF (0.8210 for strict and 0.8632 for relaxed evaluation
+Skip-Chain CRF Precision - 0.8210 for strict and 0.8632 for relaxed evaluation
+
+Sentence Level RNN
 
 ---
-## [Bidirectional RNN for Medical Event Detection in Electronic Health Records](http://www.aclweb.org/anthology/N16-1056) UofM, 2016
+## [Bidirectional RNN for Medical Event Detection in Electronic Health Records](http://www.aclweb.org/anthology/N16-1056) UofM, June 2016
 #### medevent
 
 SofArt uses CRFs  
@@ -175,7 +180,25 @@ Obj: RNNs outperform CRFs for medication, diagnosis and adverse drug event
 EHRs are noisy, have incomplete sentences/phrases, and irregular use of language, have lots of abber ...   
 graphical model does not use long term informations  
 
-:trollface: :boom: 
+** good related work ** :boom:  
+** Private dataset  ?   
+
+Labels:
+* Medication
+  - Drugname, Dosage, Frequency, Duration and Route
+* Disease
+  - ADE, Indication, Other SSD, Severity
+
+methods:
+* emb + BiLSTM
+* emb + GRU
+* CRF-nocontext (BIO tagging scheme :punch: :boom:)
+* CRF-context(context= 2 BoW rep of sentence) (BIO tagging scheme)
+
+Both sentence and document level RNN
+
+RNN > CRF
+Best (GRU-document) recall (0.8126), precision (0.7938) and Fscore (0.8031)
 
 ---
 ## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568)
