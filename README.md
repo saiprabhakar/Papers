@@ -204,6 +204,22 @@ Best (GRU-document) recall (0.8126), precision (0.7938) and Fscore (0.8031)
 ## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568) Feb 2016, GaTech + children healthcare atlanta
 #### Med2Vec
 
+diagnosis, procedure, and medication codes  
+EHR database with >3m visits  
+** What does other papers use ?  
+
+Other baselines:  
+* GloVe
+  - uses global co-occurence matrix (sparse)
+  - less computationally demading than skip gram
+  - uses weighting function thus but might require large tunning effort
+* stacked AE
+* Skip gram :punch: paperref 25 (skipgram, 2013 > word2vec (2013))
+  - goal is to find a rep for word wt such that we can predict the nearby words
+  - Skip-gram tries to maximize the softmax probability of the inner product of the center word’s vector and its context word’s vectors
+  - ppl used hierarchial sofmax and negatice sampling to get faster training
+  
+health care hand eng feature rep paperref 32 16 36 :punch:  
 
 
 :boom:
