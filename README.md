@@ -96,7 +96,7 @@ embedding for abbr and their expansion should have similar embedding
 phase 1: text span of time and event expression in clinical notes  
   - joint inference-based approach outperform naive RNN
   - timeline ordering of all events in a document
-  - Using DeepDive framework (zhang 2015) :boom:
+  - Using DeepDive framework (zhang 2015) :boom:  
 phase 2: relation btw an event and its parent document creation time
   - combination of data canonization and distance supervision rules  
 :trollface:
@@ -201,8 +201,10 @@ RNN > CRF
 Best (GRU-document) recall (0.8126), precision (0.7938) and Fscore (0.8031)
 
 ---
-## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568)
+## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568) Feb 2016, GaTech + children healthcare atlanta
 #### Med2Vec
+
+
 
 :boom:
 
