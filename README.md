@@ -97,8 +97,18 @@ phase 1: text span of time and event expression in clinical notes
   - joint inference-based approach outperform naive RNN
   - timeline ordering of all events in a document
   - Using DeepDive framework (zhang 2015) :boom:  
+
 phase 2: relation btw an event and its parent document creation time
   - combination of data canonization and distance supervision rules  
+ 
+rel Event:
+* crf for taggind and svm for recog of event attr  
+rel TIMEX:
+* rule based + ML  
+rel TLink:
+* crf, ml
+rel with NN are the best
+  
 :trollface:
 
 ---
