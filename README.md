@@ -1,9 +1,48 @@
+## [Natural Language Processing with Small Feed-Forward Networks](https://arxiv.org/pdf/1708.00214v1.pdf) (google 2017)
+
+Shows that small shallow ffNN can achieve good results
+Uses character embedding rather than word
+
+**Explores:**  
+Quantization  
+Bloom Mapped word clusters  :punch:  
+Selected features: character bigram features :punch:  
+Pipelining(Using an auxiliary task)  
+
+**For Diff NLP tasks**  
+Language Identification  
+POS tagging  
+Word Segmentation  
+Preordering    
+
+## [Revealing the Structure of Medical Dictations with Conditional Random Fields](http://www.aclweb.org/anthology/D08-1001) (2008, medical univ vienna) [Identifying Segment Topics in Medical Dictations](http://www.aclweb.org/anthology/W09-0503) (2009, medical univ vienna)
+
+Formatting the dictations considering structure and formating guidelines
+
+related to:
+* Linear text segmentation :punch: Lamprier 2008
+* text classification for section detection
+* dynamic programing methods for formating :punch: Matsuov 2003
+
+mapping annotated data to dicatations need care for repeted words, punctuation, recog errors and meta instructions
+hand coded features for each time step
+
+Classifiers:
+* CRFs based multiple label chains: BIO tagging without Outside label
+  - Better accuraccy but high training time
+* SVM based multi class
+  - Lower accuraccy wuth small training time
+
+Can Combine both the approaches by using results of SVM as input to CRFs
+
+
 ## [Deep EHR: A Survey of Recent Advances on Deep Learning Techniques for Electronic Health Record (EHR) Analysis](https://arxiv.org/pdf/1706.03446.pdf) (UofF 2017)
 
 types of EHRs:
 * basic EHRs without clinical notes
 * basic EHRs with clinical notes
 * comprehensice systems
+* tagging using HMM (generative), CRFs (discriminative) and multilable classification
 
 EHR Information Extraction (IE): Extracting information from clinical notes which is unstructed
 * Single Concept Extraction: Tag each words into categories
