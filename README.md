@@ -2,8 +2,7 @@
 
 ## [SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
 
-## [Summarization of Spoken Language—
-Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
+## [Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
 
 Types:
 - extracts vs abstracts
