@@ -1,3 +1,30 @@
+## [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
+
+## [SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
+
+## [Summarization of Spoken Language—
+Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
+
+Types:
+- extracts vs abstracts
+- indicative vs informative
+- generic vs query-driven
+- single vs multi-document
+- background vs just-the-news
+- single vs multiple topic
+- single vs multi-speaker
+- text vs multi-modal
+- selecting sentences/clauses vs condensing within sentences
+
+challenges:
+- disfluencies
+- identifying units
+- cross-speaker coherence and distributed information
+- speech recognition errors
+
+prosody-based emphasis detection :punch:
+
+
 ## [Natural Language Processing with Small Feed-Forward Networks](https://arxiv.org/pdf/1708.00214v1.pdf) (google 2017)
 
 Shows that small shallow ffNN can achieve good results
