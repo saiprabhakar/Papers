@@ -1,3 +1,10 @@
+## [GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012) (GaTech, 2016)
+supplements electronic health records (EHR) with hierarchical information inherent to medical ontologies
+GRAM represents a medical concept as a combination of its ancestors in the ontology via an attention mechanism.
+Testing on rare disease prediction and heart failure.
+
+medical codes as DAG
+
 ## [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
 
 ## [SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
