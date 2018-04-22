@@ -3,11 +3,38 @@ supplements electronic health records (EHR) with hierarchical information inhere
 GRAM represents a medical concept as a combination of its ancestors in the ontology via an attention mechanism.
 Testing on rare disease prediction and heart failure.
 
-medical codes as DAG
+medical codes as DAG, then use embedding for all leaf nodes (nodes with meaning full concepts) and visit one-hot embedding to generate a vist vector (process incoporates attention mechanism). Finally use the vist vector to predict stuff.
 
 ## [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
 
 ## [SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
+
+usually ppl use i-vector based audio embedding tech
+paper explores d-vector based approach (nn based audio embedding)
+
+usuall system:
+1. speech segmentation (short speech sections of same speaker)
+2. audio embedding (MFCCs, speaker factors, i-vectors)
+3. clustering
+2. resegmentation (refining)
+
+recently nn based embedding's use in speaker verification outperform i-v tech (text dependent)
+
+this paper use a lstm-based approach with non-parametric spectral clustering algo
+paper also aguments spectral clustering algo :punch:
+paper somewhere uses Voice Activity Detector (VAD) to find speech seg from audio
+
+Clustering:
+- online (labels for each segments as soon as they are available)
+- offline (after all segments are available)
+
+Challenges:
+- non-guassian dist (imp assumption in k-means clustering)
+- cluster imbalance (one speaker might speak all the time)
+- Hierarchial structure (speakers in diff category, some are easy to differentiate)
+
+evaluated using DER (diarization error rate)
+
 
 ## [Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
 
