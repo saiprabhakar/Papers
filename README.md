@@ -1,3 +1,38 @@
+## [Toward Controlled Generation of Text](https://arxiv.org/pdf/1703.00955.pdf) (CMU, 2018)
+"Very few recent attempts of
+using VAEs (Bowman et al., 2015; Tang et al., 2016) and
+GANs (Yu et al., 2017; Zhang et al., 2016) have been made
+to investigate generic text generation, while their generated
+text is largely randomized and uncontrollable. -- we focus on generating realistic sentences,
+whose attributes can be controlled by learning disentangled
+latent representations"
+
+Challenges:
+- "A first challenge comes from the discrete nature of text
+samples. The resulting non-differentiability hinders the use
+of global discriminators that assess generated samples and
+back-propagate gradients to guide the optimization of generators
+in a holistic manner, as shown to be highly effective
+in continuous image generation and representation modeling"
+- "Another challenge for controllable generation relates to
+learning disentangled latent representations. Interpretability
+expects each part of the latent representation to govern
+and only focus on one aspect of the samples. "
+
+Contributions:
+- "We base our generator on VAEs in combination
+with holistic discriminators of attributes for effective imposition
+of structures on the latent code."
+- "End-to-end optimization
+is enabled with differentiable softmax approximation"
+- "The probabilistic encoder of VAE also functions
+as an additional discriminator to capture variations
+of implicitly modeled aspects, and guide the generator to
+avoid entanglement during attribute code manipulation"
+- "our method enables to use separate
+datasets, one with annotated sentiment and the other with
+tense labels"
+
 ## [GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012) (GaTech, 2016)
 supplements electronic health records (EHR) with hierarchical information inherent to medical ontologies
 GRAM represents a medical concept as a combination of its ancestors in the ontology via an attention mechanism.
