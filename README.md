@@ -1,5 +1,28 @@
+## [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
+
+Modified CTC objective function. Instead of MLE, this version is trained by directly optimizing WER.
+Done using samples to approximate gradients of the expected loss function (WER).
+
+No lattice level loss here.
 
 
+
+## [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) (Graves, 2006)
+
+First version of CTC.
+
+b + L -> L'
+prefix search decoding (works fast if the peaks at the output are around mode)
+insert blanks at every pair of labels at the network output
+customized forward-backward algo
+
+MLE training of the network objective fn = - sum(x,z)_in_S ln(p(z|x))
+
+TIMIT data + BLSTM
+higher level of training noise is optimal here (guassian noise added at the input to improve generalization)
+
+Doesnt model inter-label dependencies explicitly
+Gives approximate segmentation not exact
 
 ## [Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
 
@@ -9,7 +32,7 @@ Similar to Reinforce.
 
 Gradient has the form (average loss - loss of state i) so cannot be used during the starting phase of the training.
 
-Generalized version of sample based loss derived in the CTC,2015 paper.
+Generalized version of sample based loss derived in the CTC,2015 paper. Where the CTC paper doesnt use lattice level loss function.
 
 
 ## [A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
