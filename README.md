@@ -68,6 +68,88 @@ a solution explored here is comming up with Frame Error Rate FER.
 
 
 
+
+## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
+
+10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
+
+Dataet: Google voice search tasl
+
+* Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
+* No conditional independence assumption like CTC 
+* No concept of phonemes
+* Extra noise during training and testing
+* Sampling trick for training PBLSTM
+* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
+[Know about rescoring](#rescoring-1)
+* Async stoc gradient descent [aync](#asyc)
+
+### Suggestions
+* Convolution filters can improve the results [TODO](#20paper) :punch:
+* Bad on short and long utterances [TODO](#15paper) :punch:
+
+
+
+## [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
+#### cldnn-hmm
+:punch:
+
+
+## [EFFICIENT LATTICE RESCORING USING RECURRENT NEURAL NETWORK LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/xl207_ICASSP14a.pdf) (cambridge) (2014)
+#### rescoring-1
+
+Rescoring methods:
+* n-gram style clusteing of history contexts
+  - data sparsity issues
+  - large context leads to exponential size growth
+* distance in hidden history vectors
+  - [RNNLM](#rnnlm) & and FFNNLM :punch: readmore
+
+:trollface: readmore
+
+
+
+## [Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
+#### RNNLM
+
+RNNLM is time consuming so is used to resore only some of the n-best list
+
+* obj: Speed up RNNLM when used to rerandk a large n-best list
+* Prefix Tree based N-best list rescoring (PTNR)
+  - avoid redundant computations
+  - [Bunch Mode](#bunch-mode)
+
+related:
+* FFLMs -> faster paper10ref :punch:
+* RNN-ME -> RNN on large dataset paper12ref :punch: 
+* RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
+
+PTNR:
+* Represent hypothesis in a prefix tree thus all the LM prob for the nodes can be computed in a single forward pass preventing any redundant computation.
+* Each node in the tree needs to store only hidden value and its state (if the node is not explored)
+
+#### Bunch Mode
+(block operations)
+* speeding up training o0f FF-NNLM
+* several words are processed at the same time using matrix\*matrix multiplcation rather than vector\*matrix multiplication
+* Uses BLAS library
+* 10 times faster training with slight loss of perplexity
+
+PTRN + Bunch Mode slightly complicated using class-based RNNLM #paper11ref :punch:
+
+ASR here uses two-pass search strategy:
+* first pass: decoder uses weak LM (3-gram lm) to generate multiple recog hypothesis -> word lattice
+* word lattice -> n-best hypothesis
+* second pass: powerful LM used to re-score hypothesis -> best hypothesis
+
+Acoustic modelinhg and feature settings as done in :punch: paperref25
+setting training param in :punch: paperref28
+Rescoring using linear combination of 4-gm lm and rnnlm -> 1.2% WER reduction using 100-best list
+Much faster than standard rescoring approach. Speed up increases with n in n-best list
+
+----
+----
+
 ## [Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
 
 G: attention + pointer generator network
@@ -461,100 +543,6 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 ## [Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
 #### asyc
 :boom:
-
----
-
-
-## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
-
-10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
-
-Dataet: Google voice search tasl
-
-* Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
-* No conditional independence assumption like CTC 
-* No concept of phonemes
-* Extra noise during training and testing
-* Sampling trick for training PBLSTM
-* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
-[Know about rescoring](#rescoring-1)
-* Async stoc gradient descent [aync](#asyc)
-
-### Suggestions
-* Convolution filters can improve the results [TODO](#20paper) :punch:
-* Bad on short and long utterances [TODO](#15paper) :punch:
-
----
-
-## [Connectionist Temporal Classification](ftp://ftp.idsia.ch/pub/juergen/icml2006.pdf) (2006) (Swiz+germany)
-
-* RNN -> Phonemes -> prefix search decoding
-* No conditional independence assumption like DNN-HMMs (Bengio 1999) :punch:
-
-### Contributions:
-* Efficient decoding
-* Good training algorithm
-
-:trollface: readmore
-
----
-
-## [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
-#### cldnn-hmm
-:punch:
-
----
-## [EFFICIENT LATTICE RESCORING USING RECURRENT NEURAL NETWORK LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/xl207_ICASSP14a.pdf) (cambridge) (2014)
-#### rescoring-1
-
-Rescoring methods:
-* n-gram style clusteing of history contexts
-  - data sparsity issues
-  - large context leads to exponential size growth
-* distance in hidden history vectors
-  - [RNNLM](#rnnlm) & and FFNNLM :punch: readmore
-
-:trollface: readmore
-
----
-
-## [Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
-#### RNNLM
-
-RNNLM is time consuming so is used to resore only some of the n-best list
-
-* obj: Speed up RNNLM when used to rerandk a large n-best list
-* Prefix Tree based N-best list rescoring (PTNR)
-  - avoid redundant computations
-  - [Bunch Mode](#bunch-mode)
-
-related:
-* FFLMs -> faster paper10ref :punch:
-* RNN-ME -> RNN on large dataset paper12ref :punch: 
-* RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
-
-PTNR:
-* Represent hypothesis in a prefix tree thus all the LM prob for the nodes can be computed in a single forward pass preventing any redundant computation.
-* Each node in the tree needs to store only hidden value and its state (if the node is not explored)
-
-#### Bunch Mode
-(block operations)
-* speeding up training o0f FF-NNLM
-* several words are processed at the same time using matrix\*matrix multiplcation rather than vector\*matrix multiplication
-* Uses BLAS library
-* 10 times faster training with slight loss of perplexity
-
-PTRN + Bunch Mode slightly complicated using class-based RNNLM #paper11ref :punch:
-
-ASR here uses two-pass search strategy:
-* first pass: decoder uses weak LM (3-gram lm) to generate multiple recog hypothesis -> word lattice
-* word lattice -> n-best hypothesis
-* second pass: powerful LM used to re-score hypothesis -> best hypothesis
-
-Acoustic modelinhg and feature settings as done in :punch: paperref25
-setting training param in :punch: paperref28
-Rescoring using linear combination of 4-gm lm and rnnlm -> 1.2% WER reduction using 100-best list
-Much faster than standard rescoring approach. Speed up increases with n in n-best list
 
 ---
 
