@@ -1,3 +1,50 @@
+
+
+
+## [Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
+
+Define word-level Edit-based MBR (EMBR) on lattice generated during SMBR.\
+they do it by using monte-carlo samples from the lattice to approximate the gradient of the loss function which is in the form of an expectation.\
+Similar to Reinforce.
+
+Gradient has the form (average loss - loss of state i) so cannot be used during the starting phase of the training.
+
+Generalized version of sample based loss derived in the CTC,2015 paper.
+
+
+## [A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
+
+MBR training of ASR systems \
+MBR minimizes expected loss
+
+aim to directly max word recog accuraccy on training data
+
+generally MAP is used for ASR argmax w P(w|o) = argmax_w p(o|w) * p(w) \
+p(o|w) is AM, with HMM it becomes p(o_r | theta_r) for which MLE give best theroritically. practically they use MMI or MCEE (Min classification error estimation). \
+Modification of MCEE is ORCE overall risk creterion estimation. 
+
+
+In this paper they extend ORCE objective to continuous speech recognition and use a non-symmetrical loss using the number of I, S, D in WER calculation instead of 1/0 loss.
+
+experiments on TIMIT dataset on HMM.
+
+
+## [Hypothesis Spaces For Minimum Bayes Risk Training In Large Vocabulary Speech Recognition](https://pdfs.semanticscholar.org/0687/573a482d84385ddd55e708e240f3e303fab9.pdf) (University of Sheffield, 2006)
+
+State-level MBR training
+
+MBR training good for large vocab HMMs, implementation needs hypothesis space and loss fn. \
+MMI is better than MLE training of AM (HMMs) \
+
+minimum phone error can be interpreted as MBR when phone sequence forms hypothesis space -> better than MMI \
+
+Lattice-based MBR -> constraining the search space to only those alignments specified by the lattice \
+to do this we need l(w_reference, arc_i) is  difficult.
+
+a solution explored here is comming up with Frame Error Rate FER.
+
+
+
 ## [Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
 
 G: attention + pointer generator network
