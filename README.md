@@ -1,9 +1,35 @@
+
+## [A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
+
+Two pass algorithm for align speech to text
+
+General methods:
+- iterative approach to identify increasingly reliable confidence islands
+- using a biased language model plus may be a background LM + DP alignment
+- For low resource cases, train AM from the alignment audio and adapt it to aligned ones
+- weak constraints on AM decoding
+- using dynamic time warping using TTS systems
+- Strong constraints on decoding using factor automaton which alows only contiguous strings from the training text (good one)
+
+ALgo:
+- First pass: use WFST based decoder to get a transducer with some modifications to allow insertions and null words
+  - this alows to constraint the words but not the order (efficient)
+  - but is bad in dealing with deletions, i.e. words present in text but not in audio
+- Second pass: (not clear) resegment the data + extending and joining segments where there were missing words, generate factor transducer. Output from this is considered as the final output without any further text-to-text alignment.
+
+AM training: 
+- after the alignment the AM was trained using only data with word-level Matching Error rate less than 40%
+- during the starting of the two pass AM was trained using MER less than 10%
+
+Done on MGB challenge data
+
 ## [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
 
 Modified CTC objective function. Instead of MLE, this version is trained by directly optimizing WER.
 Done using samples to approximate gradients of the expected loss function (WER).
 
 No lattice level loss here.
+
 
 
 
