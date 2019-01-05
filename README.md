@@ -1,4 +1,19 @@
 
+## [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
+
+A recursive alignment with ASR + restricting dictionary and LM \
+Introduces the concept of anchors with island of confidences \
+Dictionary (phonetic) is built using CMU public domain dictionary plus an algo \
+A simple LM with word pair and triple model for the transcript specifically
+
+Number of consecutive word matches needed for confidence islands is in the early point of the recursion to reduce the possibility of error in the early stage as it can affect the entire pipeline.
+
+Used for indexing the audio using the words in the audio file. Error of 2 sec is tolerated.
+
+General discussion:
+- Viterbi is time consuming for long audio and if it gets an error it will make it completely wrong.
+- increasing the beam search helps viterbi but it only scales for short audio
+
 ## [A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
 
 Two pass algorithm for align speech to text
