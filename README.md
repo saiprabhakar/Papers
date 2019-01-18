@@ -1,3 +1,13 @@
+## [Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
+
+Advocates for state-level (output-distribution level) parameter sharing instead of model-level and the use of state-dependent senones. \
+Senones alow parameter sharing/reduction, pronunciation optimization and new word learning 
+
+After generating all the word HMM models, cluster the senons and generate the codebook. Then replace the senones with nearest ones in the codebook. \
+The clustering start by assuming all the data points are seperate clusters then a pair are merged if they are similar (If the entropy increase is small after merging then two distributions are similar). 
+
+Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
+
 
 ## [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
 
