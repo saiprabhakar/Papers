@@ -2,9 +2,8 @@ Papers
 =================
 
 ## Speech
-=================
 
-<details><summary>General</summary>
+<details><summary> General </summary>
 
 [Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
 
@@ -261,7 +260,6 @@ evaluated using DER (diarization error rate)
 </details>
 
 ## Natural Language Processing
-===========
 
 <details><summary> General </summary>
   
@@ -623,8 +621,7 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 :boom:
 </details>
 
-Deep Learning
-==========
+## Deep Learning
 <details><summary> General </summary>
 
 
