@@ -1,23 +1,10 @@
 Papers
 =================
 
-
-Table of contents
-=================
-
-<!--ts-->
-   * [Top](#papers)
-   * [Table of contents](#table-of-contents)
-   * [Speech](#speech)
-<!--te-->
-
-
-
 ## Speech
 =================
 
 <details><summary>General</summary>
-
 
 [Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
 
@@ -132,8 +119,7 @@ Much faster than standard rescoring approach. Speed up increases with n in n-bes
 
 </details>
 
-## Cleaning Noisy Speech Dataset
-<details><summary> ... </summary>
+<details><summary> Cleaning Noisy Speech Dataset </summary>
 
 [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
 
@@ -176,8 +162,7 @@ Done on MGB challenge data
 
 </details>
 
-## End-to-End
-<details><summary> ... </summary>
+<details><summary> End-to-End </summary>
 
 [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
 
@@ -241,8 +226,7 @@ Dataset: Google voice search tasl
 
 </details>
 
-## Diarization
-<details><summary> ... </summary>
+<details><summary> Diarization </summary>
   
 [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
 
@@ -279,8 +263,7 @@ evaluated using DER (diarization error rate)
 NLP
 ===========
 
-## General
-<details><summary> ... </summary>
+<details><summary> General </summary>
   
 [Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
 
@@ -376,8 +359,8 @@ datasets, one with annotated sentiment and the other with
 tense labels"
 </details>
 
-## Clinical NLP
-<details><summary> ... </summary>
+
+<details><summary> Clinical NLP </summary>
 
 [GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012) (GaTech, 2016)
 supplements electronic health records (EHR) with hierarchical information inherent to medical ontologies
@@ -640,9 +623,9 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 :boom:
 </details>
 
-General Deep Learning
+Deep Learning
 ==========
-<details><summary> ... </summary>
+<details><summary> General </summary>
 
 
 [Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
