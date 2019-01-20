@@ -1,3 +1,19 @@
+## [Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
+
+Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
+Rather than using a data-driven clustering approach the work suggests tree-based state tying which can be used for unseen phones as well.
+
+Process of building a tied-state HMM system:
+- 3 state l-r monophone model with single guassian output density is trained
+- using the same state output distribution a CD triphone model is trained with new and tied transition matrix.
+- for all triphones from the same monophone the corresponding states are clustered and thus the parameters are tied
+- number of mixture componenets in each state are incerased untill a stopping creteria
+
+Tree-based clustering:
+- for all triphones from the same monophone every state is clustered using a decision tree. 
+- tree is based on increase in log-likelihood
+- The questions vary from lingustics properties of the left and right context phones to set of phones
+
 ## [Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
 
 Advocates for state-level (output-distribution level) parameter sharing instead of model-level and the use of state-dependent senones. \
