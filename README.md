@@ -282,7 +282,10 @@ evaluated using DER (diarization error rate)
 
 </details>
 
-## NLP
+NLP
+===========
+
+## General
 <details><summary> ... </summary>
   
 ## [Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
@@ -647,9 +650,10 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 
 
 :boom:
-<\details>
+</details>
 
-## General Deep Learning
+General Deep Learning
+==========
 <details><summary> ... </summary>
 
 
