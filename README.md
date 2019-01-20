@@ -1,3 +1,27 @@
+Papers
+=================
+
+
+Table of contents
+=================
+
+<!--ts-->
+   * [Top](#papers)
+   * [Table of contents](#table-of-contents)
+   * [Speech](#speech)
+      * [General](#general)
+      * [Cleaning Noisy Speech Dataset](#cleaning-noisy-speech-dataset)
+      * [End-to-End](#end-to-end)
+<!--te-->
+
+
+
+Speech
+=================
+
+## General
+<details><summary> ... </summary>
+
 ## [Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
 
 Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
@@ -23,84 +47,6 @@ After generating all the word HMM models, cluster the senons and generate the co
 The clustering start by assuming all the data points are seperate clusters then a pair are merged if they are similar (If the entropy increase is small after merging then two distributions are similar). 
 
 Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
-
-
-## [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
-
-A recursive alignment with ASR + restricting dictionary and LM \
-Introduces the concept of anchors with island of confidences \
-Dictionary (phonetic) is built using CMU public domain dictionary plus an algo \
-A simple LM with word pair and triple model for the transcript specifically
-
-Number of consecutive word matches needed for confidence islands is in the early point of the recursion to reduce the possibility of error in the early stage as it can affect the entire pipeline.
-
-Used for indexing the audio using the words in the audio file. Error of 2 sec is tolerated.
-
-General discussion:
-- Viterbi is time consuming for long audio and if it gets an error it will make it completely wrong.
-- increasing the beam search helps viterbi but it only scales for short audio
-
-## [A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
-
-Two pass algorithm for align speech to text
-
-General methods:
-- iterative approach to identify increasingly reliable confidence islands
-- using a biased language model plus may be a background LM + DP alignment
-- For low resource cases, train AM from the alignment audio and adapt it to aligned ones
-- weak constraints on AM decoding
-- using dynamic time warping using TTS systems
-- Strong constraints on decoding using factor automaton which alows only contiguous strings from the training text (good one)
-
-ALgo:
-- First pass: use WFST based decoder to get a transducer with some modifications to allow insertions and null words
-  - this alows to constraint the words but not the order (efficient)
-  - but is bad in dealing with deletions, i.e. words present in text but not in audio
-- Second pass: (not clear) resegment the data + extending and joining segments where there were missing words, generate factor transducer. Output from this is considered as the final output without any further text-to-text alignment.
-
-AM training: 
-- after the alignment the AM was trained using only data with word-level Matching Error rate less than 40%
-- during the starting of the two pass AM was trained using MER less than 10%
-
-Done on MGB challenge data
-
-## [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
-
-Modified CTC objective function. Instead of MLE, this version is trained by directly optimizing WER.
-Done using samples to approximate gradients of the expected loss function (WER).
-
-No lattice level loss here.
-
-
-
-
-## [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) (Graves, 2006)
-
-First version of CTC.
-
-b + L -> L'
-prefix search decoding (works fast if the peaks at the output are around mode)
-insert blanks at every pair of labels at the network output
-customized forward-backward algo
-
-MLE training of the network objective fn = - sum(x,z)_in_S ln(p(z|x))
-
-TIMIT data + BLSTM
-higher level of training noise is optimal here (guassian noise added at the input to improve generalization)
-
-Doesnt model inter-label dependencies explicitly
-Gives approximate segmentation not exact
-
-## [Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
-
-Define word-level Edit-based MBR (EMBR) on lattice generated during SMBR.\
-they do it by using monte-carlo samples from the lattice to approximate the gradient of the loss function which is in the form of an expectation.\
-Similar to Reinforce.
-
-Gradient has the form (average loss - loss of state i) so cannot be used during the starting phase of the training.
-
-Generalized version of sample based loss derived in the CTC,2015 paper. Where the CTC paper doesnt use lattice level loss function.
-
 
 ## [A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
 
@@ -132,30 +78,6 @@ Lattice-based MBR -> constraining the search space to only those alignments spec
 to do this we need l(w_reference, arc_i) is  difficult.
 
 a solution explored here is comming up with Frame Error Rate FER.
-
-
-
-
-## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
-
-10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
-
-Dataet: Google voice search tasl
-
-* Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
-* No conditional independence assumption like CTC 
-* No concept of phonemes
-* Extra noise during training and testing
-* Sampling trick for training PBLSTM
-* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
-[Know about rescoring](#rescoring-1)
-* Async stoc gradient descent [aync](#asyc)
-
-### Suggestions
-* Convolution filters can improve the results [TODO](#20paper) :punch:
-* Bad on short and long utterances [TODO](#15paper) :punch:
-
-
 
 ## [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
 #### cldnn-hmm
@@ -213,6 +135,118 @@ Acoustic modelinhg and feature settings as done in :punch: paperref25
 setting training param in :punch: paperref28
 Rescoring using linear combination of 4-gm lm and rnnlm -> 1.2% WER reduction using 100-best list
 Much faster than standard rescoring approach. Speed up increases with n in n-best list
+
+</details>
+
+## Cleaning Noisy Speech Dataset
+<details><summary>CLICK ME</summary>
+
+## [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
+
+A recursive alignment with ASR + restricting dictionary and LM \
+Introduces the concept of anchors with island of confidences \
+Dictionary (phonetic) is built using CMU public domain dictionary plus an algo \
+A simple LM with word pair and triple model for the transcript specifically
+
+Number of consecutive word matches needed for confidence islands is in the early point of the recursion to reduce the possibility of error in the early stage as it can affect the entire pipeline.
+
+Used for indexing the audio using the words in the audio file. Error of 2 sec is tolerated.
+
+General discussion:
+- Viterbi is time consuming for long audio and if it gets an error it will make it completely wrong.
+- increasing the beam search helps viterbi but it only scales for short audio
+
+## [A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
+
+Two pass algorithm for align speech to text
+
+General methods:
+- iterative approach to identify increasingly reliable confidence islands
+- using a biased language model plus may be a background LM + DP alignment
+- For low resource cases, train AM from the alignment audio and adapt it to aligned ones
+- weak constraints on AM decoding
+- using dynamic time warping using TTS systems
+- Strong constraints on decoding using factor automaton which alows only contiguous strings from the training text (good one)
+
+ALgo:
+- First pass: use WFST based decoder to get a transducer with some modifications to allow insertions and null words
+  - this alows to constraint the words but not the order (efficient)
+  - but is bad in dealing with deletions, i.e. words present in text but not in audio
+- Second pass: (not clear) resegment the data + extending and joining segments where there were missing words, generate factor transducer. Output from this is considered as the final output without any further text-to-text alignment.
+
+AM training: 
+- after the alignment the AM was trained using only data with word-level Matching Error rate less than 40%
+- during the starting of the two pass AM was trained using MER less than 10%
+
+Done on MGB challenge data
+
+</details>
+
+## End-to-End
+<details><summary>CLICK ME</summary>
+
+## [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
+
+Modified CTC objective function. Instead of MLE, this version is trained by directly optimizing WER.
+Done using samples to approximate gradients of the expected loss function (WER).
+
+No lattice level loss here.
+
+
+
+
+## [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) (Graves, 2006)
+
+First version of CTC.
+
+b + L -> L'
+prefix search decoding (works fast if the peaks at the output are around mode)
+insert blanks at every pair of labels at the network output
+customized forward-backward algo
+
+MLE training of the network objective fn = - sum(x,z)_in_S ln(p(z|x))
+
+TIMIT data + BLSTM
+higher level of training noise is optimal here (guassian noise added at the input to improve generalization)
+
+Doesnt model inter-label dependencies explicitly
+Gives approximate segmentation not exact
+
+## [Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
+
+Define word-level Edit-based MBR (EMBR) on lattice generated during SMBR.\
+they do it by using monte-carlo samples from the lattice to approximate the gradient of the loss function which is in the form of an expectation.\
+Similar to Reinforce.
+
+Gradient has the form (average loss - loss of state i) so cannot be used during the starting phase of the training.
+
+Generalized version of sample based loss derived in the CTC,2015 paper. Where the CTC paper doesnt use lattice level loss function.
+
+
+
+
+## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
+
+10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
+
+Dataet: Google voice search tasl
+
+* Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
+* No conditional independence assumption like CTC 
+* No concept of phonemes
+* Extra noise during training and testing
+* Sampling trick for training PBLSTM
+* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
+[Know about rescoring](#rescoring-1)
+* Async stoc gradient descent [aync](#asyc)
+
+### Suggestions
+* Convolution filters can improve the results [TODO](#20paper) :punch:
+* Bad on short and long utterances [TODO](#15paper) :punch:
+
+
+</details>
+
 
 ----
 ----
