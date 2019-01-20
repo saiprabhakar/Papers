@@ -139,7 +139,7 @@ Much faster than standard rescoring approach. Speed up increases with n in n-bes
 </details>
 
 ## Cleaning Noisy Speech Dataset
-<details><summary>CLICK ME</summary>
+<details><summary> ... </summary>
 
 ## [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
 
@@ -183,7 +183,7 @@ Done on MGB challenge data
 </details>
 
 ## End-to-End
-<details><summary>CLICK ME</summary>
+<details><summary> ... </summary>
 
 ## [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
 
@@ -247,9 +247,83 @@ Dataet: Google voice search tasl
 
 </details>
 
+## Diarization
+<details><summary> ... </summary>
+  
+## [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
 
-----
-----
+## [SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
+
+usually ppl use i-vector based audio embedding tech
+paper explores d-vector based approach (nn based audio embedding)
+
+usuall system:
+1. speech segmentation (short speech sections of same speaker)
+2. audio embedding (MFCCs, speaker factors, i-vectors)
+3. clustering
+2. resegmentation (refining)
+
+recently nn based embedding's use in speaker verification outperform i-v tech (text dependent)
+
+this paper use a lstm-based approach with non-parametric spectral clustering algo
+paper also aguments spectral clustering algo :punch:
+paper somewhere uses Voice Activity Detector (VAD) to find speech seg from audio
+
+Clustering:
+- online (labels for each segments as soon as they are available)
+- offline (after all segments are available)
+
+Challenges:
+- non-guassian dist (imp assumption in k-means clustering)
+- cluster imbalance (one speaker might speak all the time)
+- Hierarchial structure (speakers in diff category, some are easy to differentiate)
+
+evaluated using DER (diarization error rate)
+
+</details>
+
+## NLP
+<details><summary> ... </summary>
+  
+## [Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
+
+Types:
+- extracts vs abstracts
+- indicative vs informative
+- generic vs query-driven
+- single vs multi-document
+- background vs just-the-news
+- single vs multiple topic
+- single vs multi-speaker
+- text vs multi-modal
+- selecting sentences/clauses vs condensing within sentences
+
+challenges:
+- disfluencies
+- identifying units
+- cross-speaker coherence and distributed information
+- speech recognition errors
+
+prosody-based emphasis detection :punch:
+
+
+## [Natural Language Processing with Small Feed-Forward Networks](https://arxiv.org/pdf/1708.00214v1.pdf) (google 2017)
+
+Shows that small shallow ffNN can achieve good results
+Uses character embedding rather than word
+
+**Explores:**  
+Quantization  
+Bloom Mapped word clusters  :punch:  
+Selected features: character bigram features :punch:  
+Pipelining(Using an auxiliary task)  
+
+**For Diff NLP tasks**  
+Language Identification  
+POS tagging  
+Word Segmentation  
+Preordering    
+  
 
 ## [Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
 
@@ -303,6 +377,10 @@ avoid entanglement during attribute code manipulation"
 - "our method enables to use separate
 datasets, one with annotated sentiment and the other with
 tense labels"
+</details>
+
+## Clinical NLP
+<details><summary> ... </summary>
 
 ## [GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012) (GaTech, 2016)
 supplements electronic health records (EHR) with hierarchical information inherent to medical ontologies
@@ -311,75 +389,6 @@ Testing on rare disease prediction and heart failure.
 
 medical codes as DAG, then use embedding for all leaf nodes (nodes with meaning full concepts) and visit one-hot embedding to generate a vist vector (process incoporates attention mechanism). Finally use the vist vector to predict stuff.
 
-## [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
-
-## [SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
-
-usually ppl use i-vector based audio embedding tech
-paper explores d-vector based approach (nn based audio embedding)
-
-usuall system:
-1. speech segmentation (short speech sections of same speaker)
-2. audio embedding (MFCCs, speaker factors, i-vectors)
-3. clustering
-2. resegmentation (refining)
-
-recently nn based embedding's use in speaker verification outperform i-v tech (text dependent)
-
-this paper use a lstm-based approach with non-parametric spectral clustering algo
-paper also aguments spectral clustering algo :punch:
-paper somewhere uses Voice Activity Detector (VAD) to find speech seg from audio
-
-Clustering:
-- online (labels for each segments as soon as they are available)
-- offline (after all segments are available)
-
-Challenges:
-- non-guassian dist (imp assumption in k-means clustering)
-- cluster imbalance (one speaker might speak all the time)
-- Hierarchial structure (speakers in diff category, some are easy to differentiate)
-
-evaluated using DER (diarization error rate)
-
-
-## [Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
-
-Types:
-- extracts vs abstracts
-- indicative vs informative
-- generic vs query-driven
-- single vs multi-document
-- background vs just-the-news
-- single vs multiple topic
-- single vs multi-speaker
-- text vs multi-modal
-- selecting sentences/clauses vs condensing within sentences
-
-challenges:
-- disfluencies
-- identifying units
-- cross-speaker coherence and distributed information
-- speech recognition errors
-
-prosody-based emphasis detection :punch:
-
-
-## [Natural Language Processing with Small Feed-Forward Networks](https://arxiv.org/pdf/1708.00214v1.pdf) (google 2017)
-
-Shows that small shallow ffNN can achieve good results
-Uses character embedding rather than word
-
-**Explores:**  
-Quantization  
-Bloom Mapped word clusters  :punch:  
-Selected features: character bigram features :punch:  
-Pipelining(Using an auxiliary task)  
-
-**For Diff NLP tasks**  
-Language Identification  
-POS tagging  
-Word Segmentation  
-Preordering    
 
 ## [Revealing the Structure of Medical Dictations with Conditional Random Fields](http://www.aclweb.org/anthology/D08-1001) (2008, medical univ vienna) [Identifying Segment Topics in Medical Dictations](http://www.aclweb.org/anthology/W09-0503) (2009, medical univ vienna)
 
@@ -485,7 +494,7 @@ Summary and future work:
 
 :punch: incremental training prcedure (adding neurons to the final layer)
 
----
+
 ## [“Exploiting Task-Oriented Resources to Learn Word Embeddings for Clinical Abbreviation Expansion](https://nlp.cs.rpi.edu/paper/bionlp15.pdf) RPI, 2015
 #### clinabbr
 
@@ -494,7 +503,7 @@ embedding for abbr and their expansion should have similar embedding
 
 :trollface:
 
----
+
 ## [Brundlefly at SemEval-2016 Task 12: Recurrent Neural Networks vs. Joint Inference for Clinical Temporal Information Extraction](https://arxiv.org/pdf/1606.01433.pdf) Stanford 2016
 #### clintemp
 
@@ -516,7 +525,7 @@ rel with NN are the best
   
 :trollface:
 
----
+
 ## [“Clinical Relation Extraction with Deep Learning](https://pdfs.semanticscholar.org/7fac/52a9b0f96fcee6972cc6ac4687068442aee8.pdf) Harbin China 2016
 #### clinrel
 
@@ -536,7 +545,7 @@ Relations:
 
 :trollface:
 
----
+
 ## [Structured prediction models for RNN based sequence labeling in clinical text](https://arxiv.org/abs/1608.00612) UofM, Aug 2016
 #### medent
 
@@ -585,7 +594,7 @@ Skip-Chain CRF Precision - 0.8210 for strict and 0.8632 for relaxed evaluation
 
 Sentence Level RNN
 
----
+
 ## [Bidirectional RNN for Medical Event Detection in Electronic Health Records](http://www.aclweb.org/anthology/N16-1056) UofM, June 2016
 #### medevent
 
@@ -615,7 +624,7 @@ Both sentence and document level RNN
 RNN > CRF
 Best (GRU-document) recall (0.8126), precision (0.7938) and Fscore (0.8031)
 
----
+
 ## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568) Feb 2016, GaTech + children healthcare atlanta
 #### Med2Vec
 
@@ -638,14 +647,17 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 
 
 :boom:
+<\details>
 
----
+## General Deep Learning
+<details><summary> ... </summary>
+
 
 ## [Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
 #### asyc
 :boom:
 
----
+
 
 ## Batch Normalization 2015
   [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://github.com/saiprabhakar/Papers/blob/master/files/1502.03167v3.pdf)
@@ -745,3 +757,4 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 * Classification task need more investigation
 
 ---
+</details>
