@@ -9,20 +9,17 @@ Table of contents
    * [Top](#papers)
    * [Table of contents](#table-of-contents)
    * [Speech](#speech)
-      * [General](#general)
-      * [Cleaning Noisy Speech Dataset](#cleaning-noisy-speech-dataset)
-      * [End-to-End](#end-to-end)
 <!--te-->
 
 
 
-Speech
+## Speech
 =================
 
-## General
-<details><summary> ... </summary>
+<details><summary>General</summary>
 
-## [Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
+
+[Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
 
 Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
 Rather than using a data-driven clustering approach the work suggests tree-based state tying which can be used for unseen phones as well.
@@ -38,7 +35,7 @@ Tree-based clustering:
 - tree is based on increase in log-likelihood
 - The questions vary from lingustics properties of the left and right context phones to set of phones
 
-## [Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
+[Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
 
 Advocates for state-level (output-distribution level) parameter sharing instead of model-level and the use of state-dependent senones. \
 Senones alow parameter sharing/reduction, pronunciation optimization and new word learning 
@@ -48,7 +45,7 @@ The clustering start by assuming all the data points are seperate clusters then 
 
 Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
 
-## [A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
+[A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
 
 MBR training of ASR systems \
 MBR minimizes expected loss
@@ -65,7 +62,7 @@ In this paper they extend ORCE objective to continuous speech recognition and us
 experiments on TIMIT dataset on HMM.
 
 
-## [Hypothesis Spaces For Minimum Bayes Risk Training In Large Vocabulary Speech Recognition](https://pdfs.semanticscholar.org/0687/573a482d84385ddd55e708e240f3e303fab9.pdf) (University of Sheffield, 2006)
+[Hypothesis Spaces For Minimum Bayes Risk Training In Large Vocabulary Speech Recognition](https://pdfs.semanticscholar.org/0687/573a482d84385ddd55e708e240f3e303fab9.pdf) (University of Sheffield, 2006)
 
 State-level MBR training
 
@@ -79,13 +76,11 @@ to do this we need l(w_reference, arc_i) is  difficult.
 
 a solution explored here is comming up with Frame Error Rate FER.
 
-## [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
-#### cldnn-hmm
+[CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
 :punch:
 
 
-## [EFFICIENT LATTICE RESCORING USING RECURRENT NEURAL NETWORK LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/xl207_ICASSP14a.pdf) (cambridge) (2014)
-#### rescoring-1
+[EFFICIENT LATTICE RESCORING USING RECURRENT NEURAL NETWORK LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/xl207_ICASSP14a.pdf) (cambridge) (2014)
 
 Rescoring methods:
 * n-gram style clusteing of history contexts
@@ -98,8 +93,7 @@ Rescoring methods:
 
 
 
-## [Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
-#### RNNLM
+[Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
 
 RNNLM is time consuming so is used to resore only some of the n-best list
 
@@ -117,7 +111,7 @@ PTNR:
 * Represent hypothesis in a prefix tree thus all the LM prob for the nodes can be computed in a single forward pass preventing any redundant computation.
 * Each node in the tree needs to store only hidden value and its state (if the node is not explored)
 
-#### Bunch Mode
+- Bunch Mode
 (block operations)
 * speeding up training o0f FF-NNLM
 * several words are processed at the same time using matrix\*matrix multiplcation rather than vector\*matrix multiplication
@@ -141,7 +135,7 @@ Much faster than standard rescoring approach. Speed up increases with n in n-bes
 ## Cleaning Noisy Speech Dataset
 <details><summary> ... </summary>
 
-## [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
+[A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
 
 A recursive alignment with ASR + restricting dictionary and LM \
 Introduces the concept of anchors with island of confidences \
@@ -156,7 +150,7 @@ General discussion:
 - Viterbi is time consuming for long audio and if it gets an error it will make it completely wrong.
 - increasing the beam search helps viterbi but it only scales for short audio
 
-## [A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
+[A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
 
 Two pass algorithm for align speech to text
 
@@ -185,7 +179,7 @@ Done on MGB challenge data
 ## End-to-End
 <details><summary> ... </summary>
 
-## [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
+[Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
 
 Modified CTC objective function. Instead of MLE, this version is trained by directly optimizing WER.
 Done using samples to approximate gradients of the expected loss function (WER).
@@ -195,7 +189,7 @@ No lattice level loss here.
 
 
 
-## [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) (Graves, 2006)
+[Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) (Graves, 2006)
 
 First version of CTC.
 
@@ -212,7 +206,7 @@ higher level of training noise is optimal here (guassian noise added at the inpu
 Doesnt model inter-label dependencies explicitly
 Gives approximate segmentation not exact
 
-## [Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
+[Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
 
 Define word-level Edit-based MBR (EMBR) on lattice generated during SMBR.\
 they do it by using monte-carlo samples from the lattice to approximate the gradient of the loss function which is in the form of an expectation.\
@@ -225,11 +219,11 @@ Generalized version of sample based loss derived in the CTC,2015 paper. Where th
 
 
 
-## [Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
+[Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
 
 10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
 
-Dataet: Google voice search tasl
+Dataset: Google voice search tasl
 
 * Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
 * No conditional independence assumption like CTC 
@@ -240,9 +234,9 @@ Dataet: Google voice search tasl
 [Know about rescoring](#rescoring-1)
 * Async stoc gradient descent [aync](#asyc)
 
-### Suggestions
-* Convolution filters can improve the results [TODO](#20paper) :punch:
-* Bad on short and long utterances [TODO](#15paper) :punch:
+- Suggestions
+	* Convolution filters can improve the results [TODO](#20paper) :punch:
+	* Bad on short and long utterances [TODO](#15paper) :punch:
 
 
 </details>
@@ -250,9 +244,9 @@ Dataet: Google voice search tasl
 ## Diarization
 <details><summary> ... </summary>
   
-## [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
+[Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
 
-## [SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
+[SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
 
 usually ppl use i-vector based audio embedding tech
 paper explores d-vector based approach (nn based audio embedding)
@@ -288,7 +282,7 @@ NLP
 ## General
 <details><summary> ... </summary>
   
-## [Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
+[Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
 
 Types:
 - extracts vs abstracts
@@ -310,7 +304,7 @@ challenges:
 prosody-based emphasis detection :punch:
 
 
-## [Natural Language Processing with Small Feed-Forward Networks](https://arxiv.org/pdf/1708.00214v1.pdf) (google 2017)
+[Natural Language Processing with Small Feed-Forward Networks](https://arxiv.org/pdf/1708.00214v1.pdf) (google 2017)
 
 Shows that small shallow ffNN can achieve good results
 Uses character embedding rather than word
@@ -328,7 +322,7 @@ Word Segmentation
 Preordering    
   
 
-## [Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
+[Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
 
 G: attention + pointer generator network
 
@@ -346,7 +340,7 @@ D: usuall loss
 Added Trigram avoidance and quotation weight alleviation
 
 
-## [Toward Controlled Generation of Text](https://arxiv.org/pdf/1703.00955.pdf) (CMU, 2018)
+[Toward Controlled Generation of Text](https://arxiv.org/pdf/1703.00955.pdf) (CMU, 2018)
 "Very few recent attempts of
 using VAEs (Bowman et al., 2015; Tang et al., 2016) and
 GANs (Yu et al., 2017; Zhang et al., 2016) have been made
@@ -385,7 +379,7 @@ tense labels"
 ## Clinical NLP
 <details><summary> ... </summary>
 
-## [GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012) (GaTech, 2016)
+[GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012) (GaTech, 2016)
 supplements electronic health records (EHR) with hierarchical information inherent to medical ontologies
 GRAM represents a medical concept as a combination of its ancestors in the ontology via an attention mechanism.
 Testing on rare disease prediction and heart failure.
@@ -393,7 +387,7 @@ Testing on rare disease prediction and heart failure.
 medical codes as DAG, then use embedding for all leaf nodes (nodes with meaning full concepts) and visit one-hot embedding to generate a vist vector (process incoporates attention mechanism). Finally use the vist vector to predict stuff.
 
 
-## [Revealing the Structure of Medical Dictations with Conditional Random Fields](http://www.aclweb.org/anthology/D08-1001) (2008, medical univ vienna) [Identifying Segment Topics in Medical Dictations](http://www.aclweb.org/anthology/W09-0503) (2009, medical univ vienna)
+[Revealing the Structure of Medical Dictations with Conditional Random Fields](http://www.aclweb.org/anthology/D08-1001) (2008, medical univ vienna) [Identifying Segment Topics in Medical Dictations](http://www.aclweb.org/anthology/W09-0503) (2009, medical univ vienna)
 
 Formatting the dictations considering structure and formating guidelines
 
@@ -414,7 +408,7 @@ Classifiers:
 Can Combine both the approaches by using results of SVM as input to CRFs
 
 
-## [Deep EHR: A Survey of Recent Advances on Deep Learning Techniques for Electronic Health Record (EHR) Analysis](https://arxiv.org/pdf/1706.03446.pdf) (UofF 2017)
+[Deep EHR: A Survey of Recent Advances on Deep Learning Techniques for Electronic Health Record (EHR) Analysis](https://arxiv.org/pdf/1706.03446.pdf) (UofF 2017)
 
 types of EHRs:
 * basic EHRs without clinical notes
@@ -498,8 +492,7 @@ Summary and future work:
 :punch: incremental training prcedure (adding neurons to the final layer)
 
 
-## [“Exploiting Task-Oriented Resources to Learn Word Embeddings for Clinical Abbreviation Expansion](https://nlp.cs.rpi.edu/paper/bionlp15.pdf) RPI, 2015
-#### clinabbr
+[“Exploiting Task-Oriented Resources to Learn Word Embeddings for Clinical Abbreviation Expansion](https://nlp.cs.rpi.edu/paper/bionlp15.pdf) RPI, 2015
 
 Abbr are ambiguous especially in intensive care  
 embedding for abbr and their expansion should have similar embedding
@@ -507,8 +500,7 @@ embedding for abbr and their expansion should have similar embedding
 :trollface:
 
 
-## [Brundlefly at SemEval-2016 Task 12: Recurrent Neural Networks vs. Joint Inference for Clinical Temporal Information Extraction](https://arxiv.org/pdf/1606.01433.pdf) Stanford 2016
-#### clintemp
+[Brundlefly at SemEval-2016 Task 12: Recurrent Neural Networks vs. Joint Inference for Clinical Temporal Information Extraction](https://arxiv.org/pdf/1606.01433.pdf) Stanford 2016
 
 phase 1: text span of time and event expression in clinical notes  
   - joint inference-based approach outperform naive RNN
@@ -529,8 +521,7 @@ rel with NN are the best
 :trollface:
 
 
-## [“Clinical Relation Extraction with Deep Learning](https://pdfs.semanticscholar.org/7fac/52a9b0f96fcee6972cc6ac4687068442aee8.pdf) Harbin China 2016
-#### clinrel
+[“Clinical Relation Extraction with Deep Learning](https://pdfs.semanticscholar.org/7fac/52a9b0f96fcee6972cc6ac4687068442aee8.pdf) Harbin China 2016
 
 Relations between medical concepts  
 Concept identification (NER) -> relation classification using CRFs
@@ -549,8 +540,7 @@ Relations:
 :trollface:
 
 
-## [Structured prediction models for RNN based sequence labeling in clinical text](https://arxiv.org/abs/1608.00612) UofM, Aug 2016
-#### medent
+[Structured prediction models for RNN based sequence labeling in clinical text](https://arxiv.org/abs/1608.00612) UofM, Aug 2016
 
 Extraction of medical entities such as medication, indication, and side-effects from EHR narratives  
 RNN based feature extractors  
@@ -598,8 +588,7 @@ Skip-Chain CRF Precision - 0.8210 for strict and 0.8632 for relaxed evaluation
 Sentence Level RNN
 
 
-## [Bidirectional RNN for Medical Event Detection in Electronic Health Records](http://www.aclweb.org/anthology/N16-1056) UofM, June 2016
-#### medevent
+[Bidirectional RNN for Medical Event Detection in Electronic Health Records](http://www.aclweb.org/anthology/N16-1056) UofM, June 2016
 
 SofArt uses CRFs  
 Obj: RNNs outperform CRFs for medication, diagnosis and adverse drug event
@@ -628,8 +617,7 @@ RNN > CRF
 Best (GRU-document) recall (0.8126), precision (0.7938) and Fscore (0.8031)
 
 
-## [Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568) Feb 2016, GaTech + children healthcare atlanta
-#### Med2Vec
+[Multi-layer Representation Learning for Medical Concepts](https://arxiv.org/abs/1602.05568) Feb 2016, GaTech + children healthcare atlanta
 
 diagnosis, procedure, and medication codes  
 EHR database with >3m visits  
@@ -657,108 +645,88 @@ General Deep Learning
 <details><summary> ... </summary>
 
 
-## [Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
-#### asyc
+[Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
 :boom:
 
 
 
-## Batch Normalization 2015
-  [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://github.com/saiprabhakar/Papers/blob/master/files/1502.03167v3.pdf)
-### Problem: Internal covariance shift
+[Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://github.com/saiprabhakar/Papers/blob/master/files/1502.03167v3.pdf)
+- Problem: Internal covariance shift
+	* Distribution of each layer changes as the parameters of its previous layers are updated this makes training slow and needs less learning rate.
 
-* Distribution of each layer changes as the parameters of its previous layers are updated this makes training slow and needs less learning rate.
+- Solution: BN
+	* Makes normalization a part of architecture
+	* Lowers training time. Higher learning rate can be used. Sometime eliminates the need for Dropout
+	* Fights vannishing and exploding gradients because of normalization (scale of weights doesnt matter)
 
-### Solution: BN
+- Covariance shift 
+	* When the distribution of input to a learning system chages (whole system as a whole)
+	* Usually handled by domain adaptation
+	* ICS is an extenstion when part of it changes
 
-* Makes normalization a part of architecture
-* Lowers training time. Higher learning rate can be used. Sometime eliminates the need for Dropout
-* Fights vannishing and exploding gradients because of normalization (scale of weights doesnt matter)
+- Notes
+	* Training is faster in general if the inputs are whitened (line tras to have 0  mean and sigma = 1 and decorrelated)
+	* Ignoring the BN during gradient descent is bad idea since it leads to explosion of parameters like bias terms
+	* There were previous less successfull attemps on this idea
+	* Simply normalizing layers can constrain them. For example normalizing simoid layer would constrain them to the linear portion their nonlinearity. **So they introduced additional parameter (gamma and beta) to make sure the normalization can represent identity transformation.**
+	* Incase of Conv layer, we need to follow conv property. Different elements of the same feature map, at diffrent locations are notmalized the same way. We learn gamma and beta per feature map and not per activation.
+	* Applied BN before nonlinearity, where as standardization (2013) was after then nonlinearity.
 
-### Covariance shift 
-
-* When the distribution of input to a learning system chages (whole system as a whole)
-* Usually handled by domain adaptation
-* ICS is an extenstion when part of it changes
-
-### Notes
-
-* Training is faster in general if the inputs are whitened (line tras to have 0  mean and sigma = 1 and decorrelated)
-* Ignoring the BN during gradient descent is bad idea since it leads to explosion of parameters like bias terms
-* There were previous less successfull attemps on this idea
-* Simply normalizing layers can constrain them. For example normalizing simoid layer would constrain them to the linear portion their nonlinearity. **So they introduced additional parameter (gamma and beta) to make sure the normalization can represent identity transformation.**
-* Incase of Conv layer, we need to follow conv property. Different elements of the same feature map, at diffrent locations are notmalized the same way. We learn gamma and beta per feature map and not per activation.
-* Applied BN before nonlinearity, where as standardization (2013) was after then nonlinearity.
-
-### Further possible extensions
-
-* Similarity between BN and standardization
-* Extension to RNNs (where vanishing and exploding gradients are more severe)
-* More theoritical analysis
-* Application to domain adaptation
+- Further possible extensions
+	* Similarity between BN and standardization
+	* Extension to RNNs (where vanishing and exploding gradients are more severe)
+	* More theoritical analysis
+	* Application to domain adaptation
 
 ---
-## ModDrop 2014
 
 [ModDrop: adaptive multi-modal gesture recognition](https://arxiv.org/abs/1501.00102)
-### Notes
+- Notes
+	* Modalities (as a whole) are dropped with a probability during training
+	* They are trained without fusing during pretraining and are not droped at this point
+	* cross modal connections are introduced at training stage
+	* Dropping is only at the input layer
+	* Rescaling?
 
-* Modalities (as a whole) are dropped with a probability during training
-* They are trained without fusing during pretraining and are not droped at this point
-* cross modal connections are introduced at training stage
-* Dropping is only at the input layer
-* Rescaling?
+- Notes from citation
+	* Out Performs Dropout
+	* Combining with dropout gives higher performance
 
-### Notes from citation
 
-* Out Performs Dropout
-* Combining with dropout gives higher performance
+[Modout: Learning to Fuse Modalities via Stochastic Regularization](http://openjournals.uwaterloo.ca/index.php/vsl/article/view/103)
+- Notes
+	* Learns the probability of fusing modalities
+	* Connection between modalities btwn adjacent layers are dropped with a probability
+	* Dropping can be done in any layer
+	* No. of extra parameters to learn are small Nm x (Nm-1), where Nm is the number of modalities
+	* Very similar to **Blockout**
 
----
-## ModOut 2016
 
-  [Modout: Learning to Fuse Modalities via Stochastic Regularization](http://openjournals.uwaterloo.ca/index.php/vsl/article/view/103)
-### Notes
+[Input Convex Neural Networks](https://arxiv.org/abs/1609.07152)
+- Notes
+	* Under certain condition of weights and nonlinearity a neural network will be convex in certain inputs/outputs, so we can efficiently optimize over those inputs/outputs while keeping others fixed
 
-* Learns the probability of fusing modalities
-* Connection between modalities btwn adjacent layers are dropped with a probability
-* Dropping can be done in any layer
-* No. of extra parameters to learn are small Nm x (Nm-1), where Nm is the number of modalities
-* Very similar to **Blockout**
+- Fully input convex neural networks
+	* Convex interms of all the inputs
+	* Conditions: non-negative weights (restricts the power of the network) and non-decreasing non-linearities
 
----
+- Partially input convex neural networks
+	* Convex in certain inputs and not convex in others
+	* PICNN with k layers can represent and FICNN with k layers and any feedforward net with k layers
 
-## ICNN 2016
-  [Input Convex Neural Networks](https://arxiv.org/abs/1609.07152)
-### Notes
+- Inference
+	* Inference wrt to the convex variable are not done in a single pass as in feed forward network case
+	* Inference can be found by using optimization techniques like LP, approximate inference etc
 
-* Under certain condition of weights and nonlinearity a neural network will be convex in certain inputs/outputs, so we can efficiently optimize over those inputs/outputs while keeping others fixed
+- Learning
+	* In case of q learning the fuction fitting is automatically taken care of as the goal is to fit the bellman equation
+	* For fitting some target output they use techniques like max-margin etc
 
-#### Fully input convex neural networks
-
-* Convex interms of all the inputs
-* Conditions: non-negative weights (restricts the power of the network) and non-decreasing non-linearities
-
-#### Partially input convex neural networks
-
-* Convex in certain inputs and not convex in others
-* PICNN with k layers can represent and FICNN with k layers and any feedforward net with k layers
-
-#### Inference
-
-* Inference wrt to the convex variable are not done in a single pass as in feed forward network case
-* Inference can be found by using optimization techniques like LP, approximate inference etc
-
-#### Learning
-
-* In case of q learning the fuction fitting is automatically taken care of as the goal is to fit the bellman equation
-* For fitting some target output they use techniques like max-margin etc
-
-#### Results
-
-* Preliminary results for DRL shows faster convergence comparision to DDPG and NAF
-* Can complete face (fix some inputs while solve for others)
-* Classification task need more investigation
+- Results
+	* Preliminary results for DRL shows faster convergence comparision to DDPG and NAF
+	* Can complete face (fix some inputs while solve for others)
+	* Classification task need more investigation
 
 ---
 </details>
+
