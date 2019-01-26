@@ -31,6 +31,17 @@ The clustering start by assuming all the data points are seperate clusters then 
 
 Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
 
+
+[BOOSTED MMI FOR MODEL AND FEATURE-SPACE](https://www.danielpovey.com/files/icassp08_mmi.pdf) (Povey, 2008)
+
+MMI - maximize the posterior prob of correct utter given our model/all other utter (discriminative)
+
+modify the objective funtion to take the accuraccy of the sent3ence into consideration -> this makes BMMI very similar to MPE.
+Accuraccy for all the sentences are computed per phone. And similat to MMI we compute statistics using forward-backward algo to train it.
+
+Also uses I vector smiootheninig on statistics accumulates. We back of to ML estimates
+
+
 [A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
 
 MBR training of ASR systems \
