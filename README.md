@@ -5,14 +5,21 @@ Papers
 
 <details><summary> General </summary>
 
-[A time delay neural network architecture for efficient modeling of long temporal contexts](speak.clsp.jhu.edu/uploads/publications/papers/1048_pdf.pdf) (Povey, 2015)
 
 
 [Purely sequence-trained neural networks for ASR based on lattice-free MMI](https://www.danielpovey.com/files/2016_interspeech_mmi.pdf) (Povey, 2016)
 
+MMI denomenator computation without using lattice ie on all possible word labellings \
+3-fold reduced frame rate \
+Phone-level LM for speed \
+On GPU
 
+:punch:
+
+[A time delay neural network architecture for efficient modeling of long temporal contexts](speak.clsp.jhu.edu/uploads/publications/papers/1048_pdf.pdf) (Povey, 2015)    +
 [JHU ASPIRE SYSTEM : ROBUST LVCSR WITH TDNNS, IVECTOR adaptation and RNN-LMs](https://www.danielpovey.com/files/2015_asru_aspire.pdf) (Povey, 2015)
 
+3-fold reduced frame rate \
 TDNN faster than rnns because of parallizations and subsampling \
 data augumentation using reverberation, speed peturbation (not helpful) and volume peturbation (multi-condition training is very important)
 
@@ -26,7 +33,7 @@ GMM-HMM AM model used to generate CD state alignments
 
 Used CMUdict for training lexicons with multiple pronunciations also modelling inter-word silences \
 3-gram LM used for decoding with 4-gram used for rescoring the lattice \
-N-gram LMs trainined by using 3M words of the training transcripts later interpolated using the 22M words of the Fisher English transcripts ? \
+N-gram LMs trainined by using 3M words of the training transcripts later interpolated using the 22M words of the Fisher English transcripts ? :punch: \
 RNN-LM lattice rescoring using context vector instead of words
 
 6 layers TDNN with unsymmetric context window
