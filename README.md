@@ -3,18 +3,10 @@ Papers
 
 ## Speech
 
+
+
 <details><summary> General </summary>
 
-
-
-[Purely sequence-trained neural networks for ASR based on lattice-free MMI](https://www.danielpovey.com/files/2016_interspeech_mmi.pdf) (Povey, 2016)
-
-MMI denomenator computation without using lattice ie on all possible word labellings \
-3-fold reduced frame rate \
-Phone-level LM for speed \
-On GPU
-
-:punch:
 
 [A time delay neural network architecture for efficient modeling of long temporal contexts](speak.clsp.jhu.edu/uploads/publications/papers/1048_pdf.pdf) (Povey, 2015)    +
 [JHU ASPIRE SYSTEM : ROBUST LVCSR WITH TDNNS, IVECTOR adaptation and RNN-LMs](https://www.danielpovey.com/files/2015_asru_aspire.pdf) (Povey, 2015)
@@ -44,73 +36,7 @@ Modified sMBR still prone to insertion errors \
 for 30% cross-entropy was much better than modified sMBR
 
 
-[Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
 
-Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
-Rather than using a data-driven clustering approach the work suggests tree-based state tying which can be used for unseen phones as well.
-
-Process of building a tied-state HMM system:
-- 3 state l-r monophone model with single guassian output density is trained
-- using the same state output distribution a CD triphone model is trained with new and tied transition matrix.
-- for all triphones from the same monophone the corresponding states are clustered and thus the parameters are tied
-- number of mixture componenets in each state are incerased untill a stopping creteria
-
-Tree-based clustering:
-- for all triphones from the same monophone every state is clustered using a decision tree. 
-- tree is based on increase in log-likelihood
-- The questions vary from lingustics properties of the left and right context phones to set of phones
-
-[Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
-
-Advocates for state-level (output-distribution level) parameter sharing instead of model-level and the use of state-dependent senones. \
-Senones alow parameter sharing/reduction, pronunciation optimization and new word learning 
-
-After generating all the word HMM models, cluster the senons and generate the codebook. Then replace the senones with nearest ones in the codebook. \
-The clustering start by assuming all the data points are seperate clusters then a pair are merged if they are similar (If the entropy increase is small after merging then two distributions are similar). 
-
-Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
-
-
-[BOOSTED MMI FOR MODEL AND FEATURE-SPACE](https://www.danielpovey.com/files/icassp08_mmi.pdf) (Povey, 2008)
-
-MMI - maximize the posterior prob of correct utter given our model/all other utter (discriminative)
-
-modify the objective funtion to take the accuraccy of the sent3ence into consideration -> this makes BMMI very similar to MPE.
-Accuraccy for all the sentences are computed per phone. And similat to MMI we compute statistics using forward-backward algo to train it.
-
-Also uses I vector smiootheninig on statistics accumulates. We back of to ML estimates
-
-
-[A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
-
-MBR training of ASR systems \
-MBR minimizes expected loss
-
-aim to directly max word recog accuraccy on training data
-
-generally MAP is used for ASR argmax w P(w|o) = argmax_w p(o|w) * p(w) \
-p(o|w) is AM, with HMM it becomes p(o_r | theta_r) for which MLE give best theroritically. practically they use MMI or MCEE (Min classification error estimation). \
-Modification of MCEE is ORCE overall risk creterion estimation. 
-
-
-In this paper they extend ORCE objective to continuous speech recognition and use a non-symmetrical loss using the number of I, S, D in WER calculation instead of 1/0 loss.
-
-experiments on TIMIT dataset on HMM.
-
-
-[Hypothesis Spaces For Minimum Bayes Risk Training In Large Vocabulary Speech Recognition](https://pdfs.semanticscholar.org/0687/573a482d84385ddd55e708e240f3e303fab9.pdf) (University of Sheffield, 2006)
-
-State-level MBR training
-
-MBR training good for large vocab HMMs, implementation needs hypothesis space and loss fn. \
-MMI is better than MLE training of AM (HMMs) \
-
-minimum phone error can be interpreted as MBR when phone sequence forms hypothesis space -> better than MMI \
-
-Lattice-based MBR -> constraining the search space to only those alignments specified by the lattice \
-to do this we need l(w_reference, arc_i) is  difficult.
-
-a solution explored here is comming up with Frame Error Rate FER.
 
 [CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
 :punch:
@@ -167,6 +93,88 @@ Rescoring using linear combination of 4-gm lm and rnnlm -> 1.2% WER reduction us
 Much faster than standard rescoring approach. Speed up increases with n in n-best list
 
 </details>
+
+<details><summary> Loss functions </summary>
+
+[Purely sequence-trained neural networks for ASR based on lattice-free MMI](https://www.danielpovey.com/files/2016_interspeech_mmi.pdf) (Povey, 2016)
+
+MMI denomenator computation without using lattice ie on all possible word labellings \
+3-fold reduced frame rate \
+Phone-level LM for speed \
+On GPU
+
+:punch:
+
+
+[BOOSTED MMI FOR MODEL AND FEATURE-SPACE](https://www.danielpovey.com/files/icassp08_mmi.pdf) (Povey, 2008)
+
+MMI - maximize the posterior prob of correct utter given our model/all other utter (discriminative)
+
+modify the objective funtion to take the accuraccy of the sent3ence into consideration -> this makes BMMI very similar to MPE.
+Accuraccy for all the sentences are computed per phone. And similat to MMI we compute statistics using forward-backward algo to train it.
+
+Also uses I vector smiootheninig on statistics accumulates. We back of to ML estimates
+
+
+[A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
+
+MBR training of ASR systems \
+MBR minimizes expected loss
+
+aim to directly max word recog accuraccy on training data
+
+generally MAP is used for ASR argmax w P(w|o) = argmax_w p(o|w) * p(w) \
+p(o|w) is AM, with HMM it becomes p(o_r | theta_r) for which MLE give best theroritically. practically they use MMI or MCEE (Min classification error estimation). \
+Modification of MCEE is ORCE overall risk creterion estimation. 
+
+
+In this paper they extend ORCE objective to continuous speech recognition and use a non-symmetrical loss using the number of I, S, D in WER calculation instead of 1/0 loss.
+
+experiments on TIMIT dataset on HMM.
+
+
+[Hypothesis Spaces For Minimum Bayes Risk Training In Large Vocabulary Speech Recognition](https://pdfs.semanticscholar.org/0687/573a482d84385ddd55e708e240f3e303fab9.pdf) (University of Sheffield, 2006)
+
+State-level MBR training
+
+MBR training good for large vocab HMMs, implementation needs hypothesis space and loss fn. \
+MMI is better than MLE training of AM (HMMs) \
+
+minimum phone error can be interpreted as MBR when phone sequence forms hypothesis space -> better than MMI \
+
+Lattice-based MBR -> constraining the search space to only those alignments specified by the lattice \
+to do this we need l(w_reference, arc_i) is  difficult.
+
+a solution explored here is comming up with Frame Error Rate FER.
+
+[Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
+
+Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
+Rather than using a data-driven clustering approach the work suggests tree-based state tying which can be used for unseen phones as well.
+
+Process of building a tied-state HMM system:
+- 3 state l-r monophone model with single guassian output density is trained
+- using the same state output distribution a CD triphone model is trained with new and tied transition matrix.
+- for all triphones from the same monophone the corresponding states are clustered and thus the parameters are tied
+- number of mixture componenets in each state are incerased untill a stopping creteria
+
+Tree-based clustering:
+- for all triphones from the same monophone every state is clustered using a decision tree. 
+- tree is based on increase in log-likelihood
+- The questions vary from lingustics properties of the left and right context phones to set of phones
+
+[Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
+
+Advocates for state-level (output-distribution level) parameter sharing instead of model-level and the use of state-dependent senones. \
+Senones alow parameter sharing/reduction, pronunciation optimization and new word learning 
+
+After generating all the word HMM models, cluster the senons and generate the codebook. Then replace the senones with nearest ones in the codebook. \
+The clustering start by assuming all the data points are seperate clusters then a pair are merged if they are similar (If the entropy increase is small after merging then two distributions are similar). 
+
+Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
+
+</details>
+
 
 <details><summary> Cleaning Noisy Speech Dataset </summary>
 
