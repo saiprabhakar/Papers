@@ -5,6 +5,38 @@ Papers
 
 <details><summary> General </summary>
 
+[A time delay neural network architecture for efficient modeling of long temporal contexts](speak.clsp.jhu.edu/uploads/publications/papers/1048_pdf.pdf) (Povey, 2015)
+
+
+[Purely sequence-trained neural networks for ASR based on lattice-free MMI](https://www.danielpovey.com/files/2016_interspeech_mmi.pdf) (Povey, 2016)
+
+
+[JHU ASPIRE SYSTEM : ROBUST LVCSR WITH TDNNS, IVECTOR adaptation and RNN-LMs](https://www.danielpovey.com/files/2015_asru_aspire.pdf) (Povey, 2015)
+
+TDNN faster than rnns because of parallizations and subsampling \
+data augumentation using reverberation, speed peturbation (not helpful) and volume peturbation (multi-condition training is very important)
+
+iVector features: 
+- normalize test with training stats
+- iVector extraction in this dataset doesnt do well if the speech segment contains even a small part of silence (use VAD or two-pass decoding to remove it)
+
+TDBB trained with greedy layer-wise supervised training on 18 gpus with model averaging techniques \
+Trained using sMBR with MPE + insertion penality error \
+GMM-HMM AM model used to generate CD state alignments
+
+Used CMUdict for training lexicons with multiple pronunciations also modelling inter-word silences \
+3-gram LM used for decoding with 4-gram used for rescoring the lattice \
+N-gram LMs trainined by using 3M words of the training transcripts later interpolated using the 22M words of the Fisher English transcripts ? \
+RNN-LM lattice rescoring using context vector instead of words
+
+6 layers TDNN with unsymmetric context window
+
+Modified sMBR better than sMBR \
+Modified sMBR still prone to insertion errors \
+70% of the test data had modified sMBR better than cross-enrtopy \
+for 30% cross-entropy was much better than modified sMBR
+
+
 [Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
 
 Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
