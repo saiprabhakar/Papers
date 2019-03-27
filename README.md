@@ -94,6 +94,15 @@ Much faster than standard rescoring approach. Speed up increases with n in n-bes
 
 </details>
 
+
+
+
+
+
+
+
+
+
 <details><summary> Loss functions </summary>
 
 [Purely sequence-trained neural networks for ASR based on lattice-free MMI](https://www.danielpovey.com/files/2016_interspeech_mmi.pdf) (Povey, 2016)
@@ -176,6 +185,15 @@ Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one
 </details>
 
 
+
+
+
+
+
+
+
+
+
 <details><summary> Cleaning Noisy Speech Dataset </summary>
 
 [A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
@@ -218,6 +236,17 @@ AM training:
 Done on MGB challenge data
 
 </details>
+
+
+
+
+
+
+
+
+
+
+
 
 <details><summary> End-to-End </summary>
 
@@ -283,6 +312,16 @@ Dataset: Google voice search tasl
 
 </details>
 
+
+
+
+
+
+
+
+
+
+
 <details><summary> Diarization </summary>
   
 [Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
@@ -317,31 +356,16 @@ evaluated using DER (diarization error rate)
 
 </details>
 
+
+
+
+
+
+
 ## Natural Language Processing
 
+
 <details><summary> General </summary>
-  
-[Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
-
-Types:
-- extracts vs abstracts
-- indicative vs informative
-- generic vs query-driven
-- single vs multi-document
-- background vs just-the-news
-- single vs multiple topic
-- single vs multi-speaker
-- text vs multi-modal
-- selecting sentences/clauses vs condensing within sentences
-
-challenges:
-- disfluencies
-- identifying units
-- cross-speaker coherence and distributed information
-- speech recognition errors
-
-prosody-based emphasis detection :punch:
-
 
 [Natural Language Processing with Small Feed-Forward Networks](https://arxiv.org/pdf/1708.00214v1.pdf) (google 2017)
 
@@ -359,8 +383,17 @@ Language Identification
 POS tagging  
 Word Segmentation  
 Preordering    
-  
+</details>
 
+
+
+
+
+
+
+
+
+<details><summary> Summarization </summary>
 [Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
 
 G: attention + pointer generator network
@@ -413,7 +446,41 @@ avoid entanglement during attribute code manipulation"
 - "our method enables to use separate
 datasets, one with annotated sentiment and the other with
 tense labels"
+
+
+
+[Summarization of Spoken Language—Challenges, Methods, and Prospects](www.cs.cmu.edu/~./zechner/ezine.ps) (CMU 2002)
+
+Types:
+- extracts vs abstracts
+- indicative vs informative
+- generic vs query-driven
+- single vs multi-document
+- background vs just-the-news
+- single vs multiple topic
+- single vs multi-speaker
+- text vs multi-modal
+- selecting sentences/clauses vs condensing within sentences
+
+challenges:
+- disfluencies
+- identifying units
+- cross-speaker coherence and distributed information
+- speech recognition errors
+
+prosody-based emphasis detection :punch:
+
 </details>
+
+
+
+
+
+
+
+
+
+
 
 
 <details><summary> Clinical NLP </summary>
@@ -679,7 +746,21 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 :boom:
 </details>
 
-## Deep Learning
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## General Deep Learning
 <details><summary> General </summary>
 
 
