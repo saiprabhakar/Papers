@@ -394,6 +394,27 @@ Preordering
 
 
 <details><summary> Summarization </summary>
+
+Coversation Dataset: AMI corpus
+
+[Automatic Community Creation for Abstractive Spoken Conversation Summarization](https://www.aclweb.org/anthology/W17-4506) (Italy, 2017)
+
+Poorly written paper. \
+This paper focuses on Template based summarization which needs links between summary and conversation (we need this anyway). \
+Describes a way to find links from human generated summary and conversation which can be used for training.
+
+Pipeline: Community creation, template generation, ranker training, and summary generation components.
+
+Template generation: Generate templates from summaries by (POS tagging -> dependency parsing -> wordnet -> clustering -> word graph algorithm
+
+Community creation: Similar to topic extraction. Here they explore different way to cluster sentences
+
+Summary generation: topic segmentation, template identification (for each topic I guess), extract slot fillers, fill the template with fillers
+
+Sentence Ranking: Ranking filled template sentences with n-grams pos and tokens. This is dont to prevent repetetion of information.
+
+
+
 [Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
 
 G: attention + pointer generator network
@@ -413,6 +434,7 @@ Added Trigram avoidance and quotation weight alleviation
 
 
 [Toward Controlled Generation of Text](https://arxiv.org/pdf/1703.00955.pdf) (CMU, 2018)
+
 "Very few recent attempts of
 using VAEs (Bowman et al., 2015; Tang et al., 2016) and
 GANs (Yu et al., 2017; Zhang et al., 2016) have been made
@@ -486,6 +508,7 @@ prosody-based emphasis detection :punch:
 <details><summary> Clinical NLP </summary>
 
 [GRAM: Graph-based Attention Model for Healthcare Representation Learning](https://arxiv.org/abs/1611.07012) (GaTech, 2016)
+
 supplements electronic health records (EHR) with hierarchical information inherent to medical ontologies
 GRAM represents a medical concept as a combination of its ancestors in the ontology via an attention mechanism.
 Testing on rare disease prediction and heart failure.
