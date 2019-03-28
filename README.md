@@ -395,7 +395,11 @@ Preordering
 
 <details><summary> Summarization </summary>
 
+http://nlpprogress.com/english/summarization.html
+
 Coversation Dataset: AMI corpus
+
+Compared to MT, here the target is shorter than the input, we want a lossy translation and one-to-one word level alignemnt is less obvious here
 
 The noisy channel model is a framework used in spell checkers, question answering, speech recognition, and machine translation. In this model, the goal is to find the intended word given a word where the letters have been scrambled in some manner.
 
@@ -454,6 +458,70 @@ Extension:
 are grouped by input length. After each epoch, we
 renormalize the embedding tables"
 
+
+[Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond](https://arxiv.org/pdf/1602.06023.pdf) (IBM, 2016)
+
+Gigaword, DUC, CNN daily mail
+
+Attentional EncoderDecoder Recurrent Neural Networks \
+We
+propose several novel models that address
+critical problems in summarization that
+are not adequately modeled by the basic
+architecture, such as modeling key-words,
+capturing the hierarchy of sentence-toword structure, and emitting words that
+are rare or unseen at training time.
+
+Basic model:
+- The encoder consists of a bidirectional GRU-RNN
+- decoder
+consists of a uni-directional GRU-RNN with the
+same hidden-state size as that of the encoder
+-  attention mechanism over the source-hidden
+states and a soft-max layer over target vocabulary to generate word
+- Large vocabulary trick: decoder-vocabulary of each mini-batch is restricted to words in the source documents of that
+batch.
+- In addition, the most frequent words in the
+target dictionary are added until the vocabulary
+reaches a fixed size.
+- reduces softmax size (computational bottle-neck) and helps modelling by restricting vocab
+
+Extensions:
+- Keyword capturing: word-embeddings-based representation of the input document and capture additional linguistic features for encoder
+- Switching Generator-Pointer
+- Hierarchical Document
+Structure with Hierarchical Attention: if source is long: bi-dir RNNs on the source side, one at the word level
+and the other at the sentence level. The attention
+mechanism operates at both levels simultaneously.
+- sentence positional embedding
+- If the summary is long there is a repetition problem- Use temporal attention to solve it "keeps track of past attentional weights
+of the decoder and expliticly discourages it from
+attending to the same parts of the document in future time steps"
+
+[Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/pdf/1704.04368.pdf) (brain, 2017)
+
+A subset of IBM, 2016 paper. Explores pointer generator and coverage mechanism. \
+Scores are better than their paper though: 
+"Those works train their pointer components to activate only for out-of-vocabulary words
+or named entities (whereas we allow our model to
+freely learn when to use the pointer), and they do
+not mix the probabilities from the copy distribution and the vocabulary distribution. We believe
+the mixture approach described here is better for
+abstractive summarization"
+
+
+[Controlling Decoding for More Abstractive Summaries with Copy-Based Networks](https://arxiv.org/abs/1803.07038) (stonybrook ,2018)
+
+:punch:
+
+analysis on pointer-generators
+
+[A DEEP REINFORCED MODEL FOR ABSTRACTIVE SUMMARIZATION](https://arxiv.org/pdf/1705.04304.pdf) (salesforce 2017)
+
+RL loss + ML loss \
+uses pointers too
+
+:punch:
 
 [Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1711.09357.pdf) (china, 2017)
 
