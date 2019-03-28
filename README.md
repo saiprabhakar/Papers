@@ -397,6 +397,8 @@ Preordering
 
 Coversation Dataset: AMI corpus
 
+The noisy channel model is a framework used in spell checkers, question answering, speech recognition, and machine translation. In this model, the goal is to find the intended word given a word where the letters have been scrambled in some manner.
+
 [Automatic Community Creation for Abstractive Spoken Conversation Summarization](https://www.aclweb.org/anthology/W17-4506) (Italy, 2017)
 
 Poorly written paper. \
@@ -414,8 +416,46 @@ Summary generation: topic segmentation, template identification (for each topic 
 Sentence Ranking: Ranking filled template sentences with n-grams pos and tokens. This is dont to prevent repetetion of information.
 
 
+[A Neural Attention Model for Sentence Summarization](https://aclweb.org/anthology/D15-1044) (FB, 2015)
 
-[Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1609.05473.pdf) (china, 2017)
+Dataset: headline generation in Gigaword 4 million articles and DUC-2004,2003 shared task \
+One of the first good deep learning based abstractive summarization paper
+
+The model shows significant performance gains on the DUC-2004 shared task compared with several strong baselines.
+
+attention-based encoder + beam-search decoder \
+Fixed vocabulary \
+Output length is fixed \
+Abstractive summarization = finding optimal sequence of N words from vocaublary \
+Extractive summarization = finding optimal sequence of N words from input (this can be sentence compression if we place constrains on the output sequence order) \
+Here they generate yi+1 using input x, and previous c window summary yc by using conditional log prob and markov assumption. \
+Modelling the local conditional distribution. -> conditional language model (neutal machine translation) \
+
+Neural machin translation: models the distribution directly instead of spliting and estimating individually. \
+
+Here the encoder takes yc and x as input to produce prob of yi+1.
+
+They consider:
+- bag-of-words enc
+- conv encoder
+- attention enc
+
+Decoding:
+- viterbi decoding, is tractable but takes a lot of time.
+- replace argmax with greedy/deterministic approaches- although bad is effective and fast.
+- beam serch is an comprimise between the two (here it is simpler than phrase-based MT)
+
+Extension:
+- this is bad for unseen proper nouns 
+- To solve this they add additional feature to the final word probability and combine them with weight to get the final score. 
+- these features encourage using a word from the input.
+
+"The minibatches
+are grouped by input length. After each epoch, we
+renormalize the embedding tables"
+
+
+[Generative Adversarial Network for Abstractive Text Summarization.](https://arxiv.org/pdf/1711.09357.pdf) (china, 2017)
 
 G: attention + pointer generator network
 
