@@ -401,7 +401,16 @@ Coversation Dataset: AMI corpus
 
 Compared to MT, here the target is shorter than the input, we want a lossy translation and one-to-one word level alignemnt is less obvious here
 
-The noisy channel model is a framework used in spell checkers, question answering, speech recognition, and machine translation. In this model, the goal is to find the intended word given a word where the letters have been scrambled in some manner.
+Two types of repetition avoidance:
+- Intra-decoder attention as used in the above-mentioned paper, to let the decoder access its history (attending over all past decoder states).
+- Coverage mechanism, which discourages repeatedly attending to the same area of the input sequence: See Get To The Point: Summarization with Pointer-Generator Networks by See and Manning for the coverage loss (note that the attention here incorporates the coverage vector in a different way).
+
+Trends:
+- Extractive sentence selection
+- RL loss + ML loss
+- Pointer generator
+- coverage mechanism
+- Intra-decoder attention
 
 [Automatic Community Creation for Abstractive Spoken Conversation Summarization](https://www.aclweb.org/anthology/W17-4506) (Italy, 2017)
 
@@ -894,6 +903,7 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 ## General Deep Learning
 <details><summary> General </summary>
 
+The noisy channel model is a framework used in spell checkers, question answering, speech recognition, and machine translation. In this model, the goal is to find the intended word given a word where the letters have been scrambled in some manner.
 
 [Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
 :boom:
