@@ -411,6 +411,10 @@ Trends:
 - Pointer generator
 - coverage mechanism
 - Intra-decoder attention
+- Embedding sharing across encoder, decoder input, and decoder output.
+- Initialization with pre-trained word embeddings.
+- Teacher forcing ratio.
+
 
 [Automatic Community Creation for Abstractive Spoken Conversation Summarization](https://www.aclweb.org/anthology/W17-4506) (Italy, 2017)
 
