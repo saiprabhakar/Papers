@@ -1,366 +1,6 @@
 Papers
 =================
 
-## Speech
-
-
-
-<details><summary> General </summary>
-
-
-[A time delay neural network architecture for efficient modeling of long temporal contexts](speak.clsp.jhu.edu/uploads/publications/papers/1048_pdf.pdf) (Povey, 2015)    +
-[JHU ASPIRE SYSTEM : ROBUST LVCSR WITH TDNNS, IVECTOR adaptation and RNN-LMs](https://www.danielpovey.com/files/2015_asru_aspire.pdf) (Povey, 2015)
-
-3-fold reduced frame rate \
-TDNN faster than rnns because of parallizations and subsampling \
-data augumentation using reverberation, speed peturbation (not helpful) and volume peturbation (multi-condition training is very important)
-
-iVector features: 
-- normalize test with training stats
-- iVector extraction in this dataset doesnt do well if the speech segment contains even a small part of silence (use VAD or two-pass decoding to remove it)
-
-TDBB trained with greedy layer-wise supervised training on 18 gpus with model averaging techniques \
-Trained using sMBR with MPE + insertion penality error \
-GMM-HMM AM model used to generate CD state alignments
-
-Used CMUdict for training lexicons with multiple pronunciations also modelling inter-word silences \
-3-gram LM used for decoding with 4-gram used for rescoring the lattice \
-N-gram LMs trainined by using 3M words of the training transcripts later interpolated using the 22M words of the Fisher English transcripts ? :punch: \
-RNN-LM lattice rescoring using context vector instead of words
-
-6 layers TDNN with unsymmetric context window
-
-Modified sMBR better than sMBR \
-Modified sMBR still prone to insertion errors \
-70% of the test data had modified sMBR better than cross-enrtopy \
-for 30% cross-entropy was much better than modified sMBR
-
-
-
-
-[CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
-:punch:
-
-
-[EFFICIENT LATTICE RESCORING USING RECURRENT NEURAL NETWORK LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/xl207_ICASSP14a.pdf) (cambridge) (2014)
-
-Rescoring methods:
-* n-gram style clusteing of history contexts
-  - data sparsity issues
-  - large context leads to exponential size growth
-* distance in hidden history vectors
-  - [RNNLM](#rnnlm) & and FFNNLM :punch: readmore
-
-:trollface: readmore
-
-
-
-[Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
-
-RNNLM is time consuming so is used to resore only some of the n-best list
-
-* obj: Speed up RNNLM when used to rerandk a large n-best list
-* Prefix Tree based N-best list rescoring (PTNR)
-  - avoid redundant computations
-  - [Bunch Mode](#bunch-mode)
-
-related:
-* FFLMs -> faster paper10ref :punch:
-* RNN-ME -> RNN on large dataset paper12ref :punch: 
-* RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
-
-PTNR:
-* Represent hypothesis in a prefix tree thus all the LM prob for the nodes can be computed in a single forward pass preventing any redundant computation.
-* Each node in the tree needs to store only hidden value and its state (if the node is not explored)
-
-- Bunch Mode
-(block operations)
-* speeding up training o0f FF-NNLM
-* several words are processed at the same time using matrix\*matrix multiplcation rather than vector\*matrix multiplication
-* Uses BLAS library
-* 10 times faster training with slight loss of perplexity
-
-PTRN + Bunch Mode slightly complicated using class-based RNNLM #paper11ref :punch:
-
-ASR here uses two-pass search strategy:
-* first pass: decoder uses weak LM (3-gram lm) to generate multiple recog hypothesis -> word lattice
-* word lattice -> n-best hypothesis
-* second pass: powerful LM used to re-score hypothesis -> best hypothesis
-
-Acoustic modelinhg and feature settings as done in :punch: paperref25
-setting training param in :punch: paperref28
-Rescoring using linear combination of 4-gm lm and rnnlm -> 1.2% WER reduction using 100-best list
-Much faster than standard rescoring approach. Speed up increases with n in n-best list
-
-</details>
-
-
-
-
-
-
-
-
-
-
-<details><summary> Loss functions </summary>
-
-[Purely sequence-trained neural networks for ASR based on lattice-free MMI](https://www.danielpovey.com/files/2016_interspeech_mmi.pdf) (Povey, 2016)
-
-MMI denomenator computation without using lattice ie on all possible word labellings \
-3-fold reduced frame rate \
-Phone-level LM for speed \
-On GPU
-
-:punch:
-
-
-[BOOSTED MMI FOR MODEL AND FEATURE-SPACE](https://www.danielpovey.com/files/icassp08_mmi.pdf) (Povey, 2008)
-
-MMI - maximize the posterior prob of correct utter given our model/all other utter (discriminative)
-
-modify the objective funtion to take the accuraccy of the sent3ence into consideration -> this makes BMMI very similar to MPE.
-Accuraccy for all the sentences are computed per phone. And similat to MMI we compute statistics using forward-backward algo to train it.
-
-Also uses I vector smiootheninig on statistics accumulates. We back of to ML estimates
-
-
-[A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
-
-MBR training of ASR systems \
-MBR minimizes expected loss
-
-aim to directly max word recog accuraccy on training data
-
-generally MAP is used for ASR argmax w P(w|o) = argmax_w p(o|w) * p(w) \
-p(o|w) is AM, with HMM it becomes p(o_r | theta_r) for which MLE give best theroritically. practically they use MMI or MCEE (Min classification error estimation). \
-Modification of MCEE is ORCE overall risk creterion estimation. 
-
-
-In this paper they extend ORCE objective to continuous speech recognition and use a non-symmetrical loss using the number of I, S, D in WER calculation instead of 1/0 loss.
-
-experiments on TIMIT dataset on HMM.
-
-
-[Hypothesis Spaces For Minimum Bayes Risk Training In Large Vocabulary Speech Recognition](https://pdfs.semanticscholar.org/0687/573a482d84385ddd55e708e240f3e303fab9.pdf) (University of Sheffield, 2006)
-
-State-level MBR training
-
-MBR training good for large vocab HMMs, implementation needs hypothesis space and loss fn. \
-MMI is better than MLE training of AM (HMMs) \
-
-minimum phone error can be interpreted as MBR when phone sequence forms hypothesis space -> better than MMI \
-
-Lattice-based MBR -> constraining the search space to only those alignments specified by the lattice \
-to do this we need l(w_reference, arc_i) is  difficult.
-
-a solution explored here is comming up with Frame Error Rate FER.
-
-[Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
-
-Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
-Rather than using a data-driven clustering approach the work suggests tree-based state tying which can be used for unseen phones as well.
-
-Process of building a tied-state HMM system:
-- 3 state l-r monophone model with single guassian output density is trained
-- using the same state output distribution a CD triphone model is trained with new and tied transition matrix.
-- for all triphones from the same monophone the corresponding states are clustered and thus the parameters are tied
-- number of mixture componenets in each state are incerased untill a stopping creteria
-
-Tree-based clustering:
-- for all triphones from the same monophone every state is clustered using a decision tree. 
-- tree is based on increase in log-likelihood
-- The questions vary from lingustics properties of the left and right context phones to set of phones
-
-[Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
-
-Advocates for state-level (output-distribution level) parameter sharing instead of model-level and the use of state-dependent senones. \
-Senones alow parameter sharing/reduction, pronunciation optimization and new word learning 
-
-After generating all the word HMM models, cluster the senons and generate the codebook. Then replace the senones with nearest ones in the codebook. \
-The clustering start by assuming all the data points are seperate clusters then a pair are merged if they are similar (If the entropy increase is small after merging then two distributions are similar). 
-
-Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
-
-</details>
-
-
-
-
-
-
-
-
-
-
-
-<details><summary> Cleaning Noisy Speech Dataset </summary>
-
-[A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
-
-A recursive alignment with ASR + restricting dictionary and LM \
-Introduces the concept of anchors with island of confidences \
-Dictionary (phonetic) is built using CMU public domain dictionary plus an algo \
-A simple LM with word pair and triple model for the transcript specifically
-
-Number of consecutive word matches needed for confidence islands is in the early point of the recursion to reduce the possibility of error in the early stage as it can affect the entire pipeline.
-
-Used for indexing the audio using the words in the audio file. Error of 2 sec is tolerated.
-
-General discussion:
-- Viterbi is time consuming for long audio and if it gets an error it will make it completely wrong.
-- increasing the beam search helps viterbi but it only scales for short audio
-
-[A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
-
-Two pass algorithm for align speech to text
-
-General methods:
-- iterative approach to identify increasingly reliable confidence islands
-- using a biased language model plus may be a background LM + DP alignment
-- For low resource cases, train AM from the alignment audio and adapt it to aligned ones
-- weak constraints on AM decoding
-- using dynamic time warping using TTS systems
-- Strong constraints on decoding using factor automaton which alows only contiguous strings from the training text (good one)
-
-ALgo:
-- First pass: use WFST based decoder to get a transducer with some modifications to allow insertions and null words
-  - this alows to constraint the words but not the order (efficient)
-  - but is bad in dealing with deletions, i.e. words present in text but not in audio
-- Second pass: (not clear) resegment the data + extending and joining segments where there were missing words, generate factor transducer. Output from this is considered as the final output without any further text-to-text alignment.
-
-AM training: 
-- after the alignment the AM was trained using only data with word-level Matching Error rate less than 40%
-- during the starting of the two pass AM was trained using MER less than 10%
-
-Done on MGB challenge data
-
-</details>
-
-
-
-
-
-
-
-
-
-
-
-
-<details><summary> End-to-End </summary>
-
-[Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
-
-Modified CTC objective function. Instead of MLE, this version is trained by directly optimizing WER.
-Done using samples to approximate gradients of the expected loss function (WER).
-
-No lattice level loss here.
-
-
-
-
-[Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) (Graves, 2006)
-
-First version of CTC.
-
-b + L -> L'
-prefix search decoding (works fast if the peaks at the output are around mode)
-insert blanks at every pair of labels at the network output
-customized forward-backward algo
-
-MLE training of the network objective fn = - sum(x,z)_in_S ln(p(z|x))
-
-TIMIT data + BLSTM
-higher level of training noise is optimal here (guassian noise added at the input to improve generalization)
-
-Doesnt model inter-label dependencies explicitly
-Gives approximate segmentation not exact
-
-[Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
-
-Define word-level Edit-based MBR (EMBR) on lattice generated during SMBR.\
-they do it by using monte-carlo samples from the lattice to approximate the gradient of the loss function which is in the form of an expectation.\
-Similar to Reinforce.
-
-Gradient has the form (average loss - loss of state i) so cannot be used during the starting phase of the training.
-
-Generalized version of sample based loss derived in the CTC,2015 paper. Where the CTC paper doesnt use lattice level loss function.
-
-
-
-
-[Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
-
-10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
-
-Dataset: Google voice search tasl
-
-* Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
-* No conditional independence assumption like CTC 
-* No concept of phonemes
-* Extra noise during training and testing
-* Sampling trick for training PBLSTM
-* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
-[Know about rescoring](#rescoring-1)
-* Async stoc gradient descent [aync](#asyc)
-
-- Suggestions
-	* Convolution filters can improve the results [TODO](#20paper) :punch:
-	* Bad on short and long utterances [TODO](#15paper) :punch:
-
-
-</details>
-
-
-
-
-
-
-
-
-
-
-
-<details><summary> Diarization </summary>
-  
-[Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
-
-[SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
-
-usually ppl use i-vector based audio embedding tech
-paper explores d-vector based approach (nn based audio embedding)
-
-usuall system:
-1. speech segmentation (short speech sections of same speaker)
-2. audio embedding (MFCCs, speaker factors, i-vectors)
-3. clustering
-2. resegmentation (refining)
-
-recently nn based embedding's use in speaker verification outperform i-v tech (text dependent)
-
-this paper use a lstm-based approach with non-parametric spectral clustering algo
-paper also aguments spectral clustering algo :punch:
-paper somewhere uses Voice Activity Detector (VAD) to find speech seg from audio
-
-Clustering:
-- online (labels for each segments as soon as they are available)
-- offline (after all segments are available)
-
-Challenges:
-- non-guassian dist (imp assumption in k-means clustering)
-- cluster imbalance (one speaker might speak all the time)
-- Hierarchial structure (speakers in diff category, some are easy to differentiate)
-
-evaluated using DER (diarization error rate)
-
-</details>
-
-
-
-
-
-
 
 ## Natural Language Processing
 
@@ -892,6 +532,364 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 
 
 
+
+
+
+
+## Speech
+
+
+
+<details><summary> General </summary>
+
+
+[A time delay neural network architecture for efficient modeling of long temporal contexts](speak.clsp.jhu.edu/uploads/publications/papers/1048_pdf.pdf) (Povey, 2015)    +
+[JHU ASPIRE SYSTEM : ROBUST LVCSR WITH TDNNS, IVECTOR adaptation and RNN-LMs](https://www.danielpovey.com/files/2015_asru_aspire.pdf) (Povey, 2015)
+
+3-fold reduced frame rate \
+TDNN faster than rnns because of parallizations and subsampling \
+data augumentation using reverberation, speed peturbation (not helpful) and volume peturbation (multi-condition training is very important)
+
+iVector features: 
+- normalize test with training stats
+- iVector extraction in this dataset doesnt do well if the speech segment contains even a small part of silence (use VAD or two-pass decoding to remove it)
+
+TDBB trained with greedy layer-wise supervised training on 18 gpus with model averaging techniques \
+Trained using sMBR with MPE + insertion penality error \
+GMM-HMM AM model used to generate CD state alignments
+
+Used CMUdict for training lexicons with multiple pronunciations also modelling inter-word silences \
+3-gram LM used for decoding with 4-gram used for rescoring the lattice \
+N-gram LMs trainined by using 3M words of the training transcripts later interpolated using the 22M words of the Fisher English transcripts ? :punch: \
+RNN-LM lattice rescoring using context vector instead of words
+
+6 layers TDNN with unsymmetric context window
+
+Modified sMBR better than sMBR \
+Modified sMBR still prone to insertion errors \
+70% of the test data had modified sMBR better than cross-enrtopy \
+for 30% cross-entropy was much better than modified sMBR
+
+
+
+
+[CLDNN-HMM](https://www.semanticscholar.org/paper/Convolutional-Long-Short-Term-Memory-fully-connect-Sainath-Vinyals/56f99610f7b144f55a511da21b74291ce11f9daf)
+:punch:
+
+
+[EFFICIENT LATTICE RESCORING USING RECURRENT NEURAL NETWORK LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/xl207_ICASSP14a.pdf) (cambridge) (2014)
+
+Rescoring methods:
+* n-gram style clusteing of history contexts
+  - data sparsity issues
+  - large context leads to exponential size growth
+* distance in hidden history vectors
+  - [RNNLM](#rnnlm) & and FFNNLM :punch: readmore
+
+:trollface: readmore
+
+
+
+[Prefix Tree based N-best list Re-scoring for Recurrent Neural Network Language Model used in Speech Recognition System](https://pdfs.semanticscholar.org/5f59/1b7043deefbc3f3af19b6efeb97c2a80d27c.pdf) China 2013 
+
+RNNLM is time consuming so is used to resore only some of the n-best list
+
+* obj: Speed up RNNLM when used to rerandk a large n-best list
+* Prefix Tree based N-best list rescoring (PTNR)
+  - avoid redundant computations
+  - [Bunch Mode](#bunch-mode)
+
+related:
+* FFLMs -> faster paper10ref :punch:
+* RNN-ME -> RNN on large dataset paper12ref :punch: 
+* RNNLM -> First pass decoding by conv Weighted first pass transducer :punch:
+
+PTNR:
+* Represent hypothesis in a prefix tree thus all the LM prob for the nodes can be computed in a single forward pass preventing any redundant computation.
+* Each node in the tree needs to store only hidden value and its state (if the node is not explored)
+
+- Bunch Mode
+(block operations)
+* speeding up training o0f FF-NNLM
+* several words are processed at the same time using matrix\*matrix multiplcation rather than vector\*matrix multiplication
+* Uses BLAS library
+* 10 times faster training with slight loss of perplexity
+
+PTRN + Bunch Mode slightly complicated using class-based RNNLM #paper11ref :punch:
+
+ASR here uses two-pass search strategy:
+* first pass: decoder uses weak LM (3-gram lm) to generate multiple recog hypothesis -> word lattice
+* word lattice -> n-best hypothesis
+* second pass: powerful LM used to re-score hypothesis -> best hypothesis
+
+Acoustic modelinhg and feature settings as done in :punch: paperref25
+setting training param in :punch: paperref28
+Rescoring using linear combination of 4-gm lm and rnnlm -> 1.2% WER reduction using 100-best list
+Much faster than standard rescoring approach. Speed up increases with n in n-best list
+
+</details>
+
+
+
+
+
+
+
+
+
+
+<details><summary> Loss functions </summary>
+
+[Purely sequence-trained neural networks for ASR based on lattice-free MMI](https://www.danielpovey.com/files/2016_interspeech_mmi.pdf) (Povey, 2016)
+
+MMI denomenator computation without using lattice ie on all possible word labellings \
+3-fold reduced frame rate \
+Phone-level LM for speed \
+On GPU
+
+:punch:
+
+
+[BOOSTED MMI FOR MODEL AND FEATURE-SPACE](https://www.danielpovey.com/files/icassp08_mmi.pdf) (Povey, 2008)
+
+MMI - maximize the posterior prob of correct utter given our model/all other utter (discriminative)
+
+modify the objective funtion to take the accuraccy of the sent3ence into consideration -> this makes BMMI very similar to MPE.
+Accuraccy for all the sentences are computed per phone. And similat to MMI we compute statistics using forward-backward algo to train it.
+
+Also uses I vector smiootheninig on statistics accumulates. We back of to ML estimates
+
+
+[A NOVEL LOSS FUNCTION FOR THE OVERALL RISK CRITERION BASED DISCRIMINATIVE TRAINING OF HMM](https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf) (University of Maribor, 2000)
+
+MBR training of ASR systems \
+MBR minimizes expected loss
+
+aim to directly max word recog accuraccy on training data
+
+generally MAP is used for ASR argmax w P(w|o) = argmax_w p(o|w) * p(w) \
+p(o|w) is AM, with HMM it becomes p(o_r | theta_r) for which MLE give best theroritically. practically they use MMI or MCEE (Min classification error estimation). \
+Modification of MCEE is ORCE overall risk creterion estimation. 
+
+
+In this paper they extend ORCE objective to continuous speech recognition and use a non-symmetrical loss using the number of I, S, D in WER calculation instead of 1/0 loss.
+
+experiments on TIMIT dataset on HMM.
+
+
+[Hypothesis Spaces For Minimum Bayes Risk Training In Large Vocabulary Speech Recognition](https://pdfs.semanticscholar.org/0687/573a482d84385ddd55e708e240f3e303fab9.pdf) (University of Sheffield, 2006)
+
+State-level MBR training
+
+MBR training good for large vocab HMMs, implementation needs hypothesis space and loss fn. \
+MMI is better than MLE training of AM (HMMs) \
+
+minimum phone error can be interpreted as MBR when phone sequence forms hypothesis space -> better than MMI \
+
+Lattice-based MBR -> constraining the search space to only those alignments specified by the lattice \
+to do this we need l(w_reference, arc_i) is  difficult.
+
+a solution explored here is comming up with Frame Error Rate FER.
+
+[Tree-Based State Tying for High Accuracy Modelling](www.aclweb.org/anthology/H94-1062) (Cambridge, 1994)
+
+Data insufficiency occurs when using cross-word triphones. To solve this ppl use state-tying. \
+Rather than using a data-driven clustering approach the work suggests tree-based state tying which can be used for unseen phones as well.
+
+Process of building a tied-state HMM system:
+- 3 state l-r monophone model with single guassian output density is trained
+- using the same state output distribution a CD triphone model is trained with new and tied transition matrix.
+- for all triphones from the same monophone the corresponding states are clustered and thus the parameters are tied
+- number of mixture componenets in each state are incerased untill a stopping creteria
+
+Tree-based clustering:
+- for all triphones from the same monophone every state is clustered using a decision tree. 
+- tree is based on increase in log-likelihood
+- The questions vary from lingustics properties of the left and right context phones to set of phones
+
+[Subphonetic Modeling for Speech Recognition](https://core.ac.uk/download/pdf/22876656.pdf) (CMU, 1992)
+
+Advocates for state-level (output-distribution level) parameter sharing instead of model-level and the use of state-dependent senones. \
+Senones alow parameter sharing/reduction, pronunciation optimization and new word learning 
+
+After generating all the word HMM models, cluster the senons and generate the codebook. Then replace the senones with nearest ones in the codebook. \
+The clustering start by assuming all the data points are seperate clusters then a pair are merged if they are similar (If the entropy increase is small after merging then two distributions are similar). 
+
+Explores 3, 5, 7 state triphone models and finds than 5 is the most optimal one 
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<details><summary> Cleaning Noisy Speech Dataset </summary>
+
+[A RECURSIVE ALGORITHM FOR THE FORCED ALIGNMENT OF VERY LONG AUDIO SEGMENTS](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.649.6346&rep=rep1&type=pdf) (Cambridge, 1998)
+
+A recursive alignment with ASR + restricting dictionary and LM \
+Introduces the concept of anchors with island of confidences \
+Dictionary (phonetic) is built using CMU public domain dictionary plus an algo \
+A simple LM with word pair and triple model for the transcript specifically
+
+Number of consecutive word matches needed for confidence islands is in the early point of the recursion to reduce the possibility of error in the early stage as it can affect the entire pipeline.
+
+Used for indexing the audio using the words in the audio file. Error of 2 sec is tolerated.
+
+General discussion:
+- Viterbi is time consuming for long audio and if it gets an error it will make it completely wrong.
+- increasing the beam search helps viterbi but it only scales for short audio
+
+[A SYSTEM FOR AUTOMATIC ALIGNMENT OF BROADCAST MEDIA CAPTIONS USING WEIGHTED FINITE-STATE TRANSDUCERS](https://homepages.inf.ed.ac.uk/srenals/pb-align-asru2015.pdf) (univ of Edinburgh, 2015)
+
+Two pass algorithm for align speech to text
+
+General methods:
+- iterative approach to identify increasingly reliable confidence islands
+- using a biased language model plus may be a background LM + DP alignment
+- For low resource cases, train AM from the alignment audio and adapt it to aligned ones
+- weak constraints on AM decoding
+- using dynamic time warping using TTS systems
+- Strong constraints on decoding using factor automaton which alows only contiguous strings from the training text (good one)
+
+ALgo:
+- First pass: use WFST based decoder to get a transducer with some modifications to allow insertions and null words
+  - this alows to constraint the words but not the order (efficient)
+  - but is bad in dealing with deletions, i.e. words present in text but not in audio
+- Second pass: (not clear) resegment the data + extending and joining segments where there were missing words, generate factor transducer. Output from this is considered as the final output without any further text-to-text alignment.
+
+AM training: 
+- after the alignment the AM was trained using only data with word-level Matching Error rate less than 40%
+- during the starting of the two pass AM was trained using MER less than 10%
+
+Done on MGB challenge data
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+<details><summary> End-to-End </summary>
+
+[Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
+
+Modified CTC objective function. Instead of MLE, this version is trained by directly optimizing WER.
+Done using samples to approximate gradients of the expected loss function (WER).
+
+No lattice level loss here.
+
+
+
+
+[Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf) (Graves, 2006)
+
+First version of CTC.
+
+b + L -> L'
+prefix search decoding (works fast if the peaks at the output are around mode)
+insert blanks at every pair of labels at the network output
+customized forward-backward algo
+
+MLE training of the network objective fn = - sum(x,z)_in_S ln(p(z|x))
+
+TIMIT data + BLSTM
+higher level of training noise is optimal here (guassian noise added at the input to improve generalization)
+
+Doesnt model inter-label dependencies explicitly
+Gives approximate segmentation not exact
+
+[Optimizing expected word error rate via sampling for speech recognition](https://arxiv.org/abs/1706.02776) (Google, 2017)
+
+Define word-level Edit-based MBR (EMBR) on lattice generated during SMBR.\
+they do it by using monte-carlo samples from the lattice to approximate the gradient of the loss function which is in the form of an expectation.\
+Similar to Reinforce.
+
+Gradient has the form (average loss - loss of state i) so cannot be used during the starting phase of the training.
+
+Generalized version of sample based loss derived in the CTC,2015 paper. Where the CTC paper doesnt use lattice level loss function.
+
+
+
+
+[Listen Attend and Spell (2015) Google Brain](https://arxiv.org/abs/1508.01211)
+
+10.3, 14.5% WER compared to 8% state of the art [cldnn-hmm](#cldnn-hmm)
+
+Dataset: Google voice search tasl
+
+* Listner(PBLSTM) -> Attention (MLP + Softmax) -> Speller (MLP + Softmax) -> Characters
+* No conditional independence assumption like CTC 
+* No concept of phonemes
+* Extra noise during training and testing
+* Sampling trick for training PBLSTM
+* Beam search(no dictionary was used 'cause it wasnt too useful) + LM based rescoring (very effective) 
+[Know about rescoring](#rescoring-1)
+* Async stoc gradient descent [aync](#asyc)
+
+- Suggestions
+	* Convolution filters can improve the results [TODO](#20paper) :punch:
+	* Bad on short and long utterances [TODO](#15paper) :punch:
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<details><summary> Diarization </summary>
+  
+[Deep Learning Approaches for Online Speaker Diarization](http://web.stanford.edu/class/cs224s/reports/Chaitanya_Asawa.pdf) (2012)
+
+[SPEAKER DIARIZATION WITH LSTM](https://arxiv.org/pdf/1710.10468.pdf) (google, 2018)
+
+usually ppl use i-vector based audio embedding tech
+paper explores d-vector based approach (nn based audio embedding)
+
+usuall system:
+1. speech segmentation (short speech sections of same speaker)
+2. audio embedding (MFCCs, speaker factors, i-vectors)
+3. clustering
+2. resegmentation (refining)
+
+recently nn based embedding's use in speaker verification outperform i-v tech (text dependent)
+
+this paper use a lstm-based approach with non-parametric spectral clustering algo
+paper also aguments spectral clustering algo :punch:
+paper somewhere uses Voice Activity Detector (VAD) to find speech seg from audio
+
+Clustering:
+- online (labels for each segments as soon as they are available)
+- offline (after all segments are available)
+
+Challenges:
+- non-guassian dist (imp assumption in k-means clustering)
+- cluster imbalance (one speaker might speak all the time)
+- Hierarchial structure (speakers in diff category, some are easy to differentiate)
+
+evaluated using DER (diarization error rate)
+
+</details>
 
 
 
