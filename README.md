@@ -37,7 +37,24 @@ Preordering
 
 http://nlpprogress.com/english/summarization.html
 
-Coversation Dataset: AMI corpus
+Datasets:
+- Coversation Dataset: AMI corpus
+- The Argumentative Dialogue Summary Corpus
+(Misra et al. 2015) consist of 225 summaries, 5
+different summaries produced by trained summarizers, of 45 dialogue excerpts on topics like gun
+control, gay marriage, the death penalty and abortion. This was used for experiments and evaluations.
+- CNN/Daily Mail Dataset
+The dataset used by See et al. (2017) was the
+CNN/Daily Mail dataset (Hermann et al., 2015;
+Nallapati et al., 2016), which contains online
+news articles (781 tokens on average) paired with
+multi-sentence summaries (3.75 sentences or 56
+tokens on average).
+- The DUC corpus8
+comes in two parts: the 2003
+corpus consisting of 624 document, summary
+pairs and the 2004 corpus consisting of 500 pairs.
+- Gigaword corpus contains about 3.8M training examples
 
 Compared to MT, here the target is shorter than the input, we want a lossy translation and one-to-one word level alignemnt is less obvious here
 
