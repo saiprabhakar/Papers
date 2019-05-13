@@ -26,6 +26,76 @@ Preordering
 </details>
 
 
+<details><summary> Information Extraction </summary>
+
+- Event Extraction: \
+that it can have several event
+types and multiple events per input.
+
+- Information Extraction: \
+In general we assume, we only have a single event type and assume
+there is zero or one event mentioned in the input,
+which is an easier task
+
+IE Datasets:
+
+- ATIS:
+	- ~5k training, ~900 testing
+	- natural language requests to a simulated airline booking system
+	- Each word is labeled with one of several classes, e.g. departure city, arrival city, cost, etc.
+
+- MIT restaurant:
+	- ~7600 train, ~1500 testing
+	- Ratings and amenities
+	- 10 fields
+
+- Movie corpus:
+	- ~9700 train, ~2400 testing
+	- Actors and plots
+	- 8 fields
+
+- Above 3 contains token-level labels in BIO format
+
+EE datasets:
+
+- ACE 2005 dataset: \
+:punch:
+
+[End-to-End Information Extraction without Token-Level Supervision](https://aclweb.org/anthology/W17-4606) (TUDenmark 2017)
+
+IE without token level labels using pointers \
+Achieve results close to baseline which is uses token-level labels
+
+Different implementaiton that the originial pointers \ 
+Output is content rather than the position \ 
+one encoder and K decoders \
+The output at each time step is a probability distribution over one-hot encoded input.
+
+joined multiple output for single lable with commas (multiple diestination) \
+used frequent 10 labesl for ATIS, and all the labels from MIT and Movie corpus.
+
+Baseline:
+- 2 layer, Bi-LSTM -> LSTM (128 hidden, 128 emb, Adam)
+- BIO labels
+- AITS F1: 0.9456
+
+Proposed model:
+- prepend commas to get in the output, LOL
+- For restaraunt data:
+	- the parametes were doubles and droupout was used
+	- Added summatized LSTM to each decoder ? :punch:
+	- last hidden state of summ LSTM is appended to each input of the summarizer
+
+Related work:
+- EE model: \ 
+	- :punch: Nguyen et al. (2016)
+- Generate word level tokens using searching similar words
+
+Cons:
+- can only produce words in the input, shouldnt normalize the input data (dates)
+   
+</details>
+
 
 
 
