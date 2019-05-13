@@ -40,20 +40,17 @@ which is an easier task
 IE Datasets:
 
 - ATIS:
-	- ~5k training, ~900 testing
-	- natural language requests to a simulated airline booking system
-	- Each word is labeled with one of several classes, e.g. departure city, arrival city, cost, etc.
-
+  - ~5k training, ~900 testing
+  - natural language requests to a simulated airline booking system
+  - Each word is labeled with one of several classes, e.g. departure city, arrival city, cost, etc.
 - MIT restaurant:
 	- ~7600 train, ~1500 testing
 	- Ratings and amenities
 	- 10 fields
-
 - Movie corpus:
 	- ~9700 train, ~2400 testing
 	- Actors and plots
 	- 8 fields
-
 - Above 3 contains token-level labels in BIO format
 
 EE datasets:
@@ -61,39 +58,86 @@ EE datasets:
 - ACE 2005 dataset: \
 :punch:
 
-[End-to-End Information Extraction without Token-Level Supervision](https://aclweb.org/anthology/W17-4606) (TUDenmark 2017)
+Closed or Traditional IE:
+- purely supervised learning with engineered word-level and syntactic features
+- weakly supervised multiple-instance learning:
+	- where negative
+examples are automatically generated from non-annotated entity pairs within a
+sentence. 
+	- small size of many annotated datasets: bootstrapping supervised systems from a high-precision
+seed patterns
+	- Some contributions brought this approach to the extreme, with
+**self-training methods** that automatically generate their own training data
+	- One of the major issues with semi-supervised approaches, both bootstrapped
+and self-supervised, is **semantic drift**, which occurs when erroneous patterns are
+learnt and lead to erroneous triples which, in turn, generate problematic patterns
+where the meaning of the original pattern is substantially altered.
+	- NELL “never-ending learning” paradigm.
+- distant supervision paradigm:
+	- distantly supervised systems generate a lot of noisy pattern-based features using triples from (possibly human-contributed) knowledge resources, and then combine all these features using supervised classifiers.
+- Statistical Relational Learning paradigm:
+	- to couple actual IE with relational inference over knowledge
+bases (Wang and Cohen, 2015), or leverage end-to-end deep neural network models
+to frame the relation extraction task
+
+Open IE:
+- not only is it fully unsupervised, but it does not even rely on a
+predefined entity or relation inventory at all. 
+- open and unconstrained extraction of an unspecified set of relations, which is not
+given as input, but rather obtained as a by-product of the extraction process. The
+sole input of an OIE system is a large, usually Web-scale, textual corpus.
+:punch:
+
+Universal schemas:
+- combination of open and closed IE
+- :punch:
+
+[End-to-End Information Extraction without Token-Level Supervision](https://aclweb.org/anthology/W17-4606) (TUDenmark, Tradeshift 2017)
+
+Code: https://github.com/rasmusbergpalm/e2e-ie-release
 
 IE without token level labels using pointers \
 Achieve results close to baseline which is uses token-level labels
-
-Different implementaiton that the originial pointers \ 
-Output is content rather than the position \ 
-one encoder and K decoders \
-The output at each time step is a probability distribution over one-hot encoded input.
-
-joined multiple output for single lable with commas (multiple diestination) \
-used frequent 10 labesl for ATIS, and all the labels from MIT and Movie corpus.
 
 Baseline:
 - 2 layer, Bi-LSTM -> LSTM (128 hidden, 128 emb, Adam)
 - BIO labels
 - AITS F1: 0.9456
 
+Data:
+- Joined multiple output for single lable with commas (multiple diestination)
+- Used frequent 10 labesl for ATIS, and all the labels from MIT and Movie corpus.
+- prepend inputs with commas to get in the output, LOL
+
 Proposed model:
-- prepend commas to get in the output, LOL
+- Different implementaiton that the originial pointers
+- Output is content rather than the position :punch:
+- 1 shared encoder
+- K decoders one for each type of information to be  extracted
+- The output at each time step is a probability distribution over one-hot encoded input.
+
+Modifications:
 - For restaraunt data:
 	- the parametes were doubles and droupout was used
-	- Added summatized LSTM to each decoder ? :punch:
+	- Added "summarizer LSTM" to each decoder ? :punch:
 	- last hidden state of summ LSTM is appended to each input of the summarizer
 
 Related work:
-- EE model: \ 
+- EE model:
 	- :punch: Nguyen et al. (2016)
 - Generate word level tokens using searching similar words
 
 Cons:
 - can only produce words in the input, shouldnt normalize the input data (dates)
-   
+
+
+[Attend, Copy, Parse End-to-end information extraction from documents](https://arxiv.org/pdf/1812.07248.pdf) (Tradeshift 2017)
+
+Extract information from images of business documents, invoices \ 
+Uses images, words and the word's position to extract output strings \
+Some modification in loss function and regularization which might be interesting :punch:
+
+
 </details>
 
 
