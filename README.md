@@ -28,69 +28,65 @@ Preordering
 
 <details><summary> Information Extraction </summary>
 
-- Event Extraction: \
-that it can have several event
+Types:
+- Event Extraction:
+	- that it can have several event
 types and multiple events per input.
-
-- Information Extraction: \
-In general we assume, we only have a single event type and assume
+- Information Extraction:
+	- In general we assume, we only have a single event type and assume
 there is zero or one event mentioned in the input,
 which is an easier task
 
-IE Datasets:
+Datasets
+- IE Datasets:
+	- ATIS:
+	  - ~5k training, ~900 testing
+	  - natural language requests to a simulated airline booking system
+	  - Each word is labeled with one of several classes, e.g. departure city, arrival city, cost, etc.
+	- MIT restaurant:
+		- ~7600 train, ~1500 testing
+		- Ratings and amenities
+		- 10 fields
+	- Movie corpus:
+		- ~9700 train, ~2400 testing
+		- Actors and plots
+		- 8 fields
+	- Above 3 contains token-level labels in BIO format
+- EE datasets:
+	- ACE 2005 dataset:
+		- :punch:
 
-- ATIS:
-  - ~5k training, ~900 testing
-  - natural language requests to a simulated airline booking system
-  - Each word is labeled with one of several classes, e.g. departure city, arrival city, cost, etc.
-- MIT restaurant:
-	- ~7600 train, ~1500 testing
-	- Ratings and amenities
-	- 10 fields
-- Movie corpus:
-	- ~9700 train, ~2400 testing
-	- Actors and plots
-	- 8 fields
-- Above 3 contains token-level labels in BIO format
-
-EE datasets:
-
-- ACE 2005 dataset: \
-:punch:
-
-Closed or Traditional IE:
-- purely supervised learning with engineered word-level and syntactic features
-- weakly supervised multiple-instance learning:
-	- where negative
-examples are automatically generated from non-annotated entity pairs within a
-sentence. 
-	- small size of many annotated datasets: bootstrapping supervised systems from a high-precision
-seed patterns
-	- Some contributions brought this approach to the extreme, with
-**self-training methods** that automatically generate their own training data
-	- One of the major issues with semi-supervised approaches, both bootstrapped
-and self-supervised, is **semantic drift**, which occurs when erroneous patterns are
-learnt and lead to erroneous triples which, in turn, generate problematic patterns
-where the meaning of the original pattern is substantially altered.
-	- NELL “never-ending learning” paradigm.
-- distant supervision paradigm:
-	- distantly supervised systems generate a lot of noisy pattern-based features using triples from (possibly human-contributed) knowledge resources, and then combine all these features using supervised classifiers.
-- Statistical Relational Learning paradigm:
-	- to couple actual IE with relational inference over knowledge
-bases (Wang and Cohen, 2015), or leverage end-to-end deep neural network models
-to frame the relation extraction task
-
-Open IE:
-- not only is it fully unsupervised, but it does not even rely on a
-predefined entity or relation inventory at all. 
-- open and unconstrained extraction of an unspecified set of relations, which is not
-given as input, but rather obtained as a by-product of the extraction process. The
-sole input of an OIE system is a large, usually Web-scale, textual corpus.
-:punch:
-
-Universal schemas:
-- combination of open and closed IE
-- :punch:
+Approaches:
+- Closed or Traditional IE:
+	- purely supervised learning with engineered word-level and syntactic features
+	- weakly supervised multiple-instance learning:
+		- where negative examples are automatically generated from non-annotated entity pairs within a
+	sentence. 
+		- small size of many annotated datasets: bootstrapping supervised systems from a high-precision
+	seed patterns
+		- Some contributions brought this approach to the extreme, with
+	**self-training methods** that automatically generate their own training data
+		- One of the major issues with semi-supervised approaches, both bootstrapped
+	and self-supervised, is **semantic drift**, which occurs when erroneous patterns are
+	learnt and lead to erroneous triples which, in turn, generate problematic patterns
+	where the meaning of the original pattern is substantially altered.
+		- NELL “never-ending learning” paradigm.
+	- distant supervision paradigm:
+		- distantly supervised systems generate a lot of noisy pattern-based features using triples from (possibly human-contributed) knowledge resources, and then combine all these features using supervised classifiers.
+	- Statistical Relational Learning paradigm:
+		- to couple actual IE with relational inference over knowledge
+	bases (Wang and Cohen, 2015), or leverage end-to-end deep neural network models
+	to frame the relation extraction task
+- Open IE:
+	- not only is it fully unsupervised, but it does not even rely on a
+	predefined entity or relation inventory at all. 
+	- open and unconstrained extraction of an unspecified set of relations, which is not
+	given as input, but rather obtained as a by-product of the extraction process. The
+	sole input of an OIE system is a large, usually Web-scale, textual corpus.
+	:punch:
+- Universal schemas:
+	- combination of open and closed IE
+	- :punch:
 
 [End-to-End Information Extraction without Token-Level Supervision](https://aclweb.org/anthology/W17-4606) (TUDenmark, Tradeshift 2017)
 
