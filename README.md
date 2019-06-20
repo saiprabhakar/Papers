@@ -25,6 +25,52 @@ Word Segmentation
 Preordering    
 </details>
 
+<details><summary> Relation Extraction </summary>
+https://arxiv.org/pdf/1606.09370.pdf
+https://github.com/thunlp/NREPapers
+</details>
+
+<details><summary> Question Answering </summary>
+	
+[Text Understanding with the Attention Sum Reader Network](https://arxiv.org/pdf/1603.01547.pdf) (IBM Watson, 2016)
+
+Uses CNN/Daily Mail and Children's Book Test. Generate lots of one word QA data from summaries.
+
+Intuitively, our model is structured as follows:
+1. We compute a vector embedding of the query.
+2. We compute a vector embedding of each individual word in the context of the whole document (contextual embedding).
+3. Using a dot product between the question embedding and the contextual embedding of each occurrence of a candidate answer in the document, we select the most likely answer.
+
+Notes:
+- Very simple model based on pointers idea. Does not compute a fixed length representation of the document like usual models. They claim blending is bad when there are multiple similar candidates.
+- Also accounts for same word occuring multiple times in the input which pointer network does not.
+- Log likelihood loss
+- Masks named entities with unique tags per example which are randomly shuffled.
+
+Results:
+- Performance decreases as the input lenght and the number of candidates increase.
+- Performance increase if the correct answer is likely to occur frequenctly. this is because we sum the scores for each occurance.
+
+Related work:
+- 2015 Attentive reader: 
+	- compute a fixed length embedding of the document
+	- computes a joint query m, and doc representation with a non-linear fn
+	- m is compared against condidates and scored
+
+- 2015 Impatient Readers:
+	- :punch:
+	- Impatient Reader computes attention over the document after reading every word
+	of the query. 
+
+- chen 2016:
+	- modified version of attentive reader
+	- performs significantly better than the original
+
+- memNNs 2015:
+	- window memory + self supervision - similar performance
+	
+</details>
+
 
 <details><summary> Information Extraction </summary>
 
