@@ -1069,13 +1069,35 @@ evaluated using DER (diarization error rate)
 
 
 
-
-
-
-
-
-
 ## General Deep Learning
+
+<details><summary> Theory </summary>
+
+https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.441.7873&rep=rep1&type=pdf
+
+[Multilayer Feedforward Networks are Universal Approximators ](http://cognitivemedium.com/magic_paper/assets/Hornik.pdf) (1988 UofC)
+
+Rigorously establishes thut standard multiluyer feedforward networks with one
+hidden layer using arbitrary squashing functions are capable of approximating any Borel measurable function
+from one finite dimensional space to another to any desired degree of auccuracy.
+
+The main idea behind the proof is to show that Stone-Weierstrass Theorem can be applied to the networks and the space.
+
+- \sum\prod^{r} (G) functions/networks is universal approximator for any continuous nonconstant function G.
+- \sum{r} (G) functions/networks is universal approximator for any squashing function G.
+
+
+https://papers.nips.cc/paper/7203-the-expressive-power-of-neural-networks-a-view-from-the-width
+
+https://arxiv.org/abs/1708.02691
+
+</details>
+
+
+
+
+
+
 <details><summary> General </summary>
 
 The noisy channel model is a framework used in spell checkers, question answering, speech recognition, and machine translation. In this model, the goal is to find the intended word given a word where the letters have been scrambled in some manner.
