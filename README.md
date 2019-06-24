@@ -33,6 +33,70 @@ https://github.com/thunlp/NREPapers
 
 
 <details><summary> Question Answering </summary>
+
+[DYNAMIC COATTENTION NETWORKS FOR QUESTION ANSWERING](https://arxiv.org/pdf/1611.01604.pdf) (salesforce research, 2018)
+
+The paper claims that previously proposed single-pass nature models does not recover from local maximas.
+
+Network:
+- Dynamic attention Network fuse codependent representation of question and document 
+- Dynamic Point decoder iterate over potential answer spans  
+- has a big improvement on squad dataset  
+ 
+Implementation:
+- The question and passage share the same lstm encoder  
+- the question encodings are non-linearly projected to account for variation in the encoding spaces
+- Coattention mechanism attends over the question and document simultaneously then finally fuse their attention contexts  
+- Coattention was previously proposed in 2016 
+- Dynamic decoder is similar to a state machine whose state is maintained by a lstm-based encoder 
+- “During each iteration, the decoder updates its state taking into account the coattention encoding corresponding to current estimates of the start and end positions, and produces, via a multilayer neural network, new estimates of the start and end positions” 
+- Highway maxout network which is a combination of previously proposed MaxOut networks in 2013 and Highway networks in 2015.
+- “The intuition behind using such model is that the QA task consists of multiple question types and document topics. These variations may require different models to estimate the answer span. Maxout provides a simple and effective way to pool across multiple model variations.”
+
+Notes:
+- Sentinel vectors are randomly initialized and optimized during training :punch:
+- Dropouts where used 
+- “There is no notable performance degradation for longer documents and questions contrary to our expectations. “
+- “The DCN, like other models, is adept at “when” questions and struggles with the more complex “why” questions.”
+- “we observe that when the model is wrong, its mistakes tend to have the correct “answer type” (eg. person for a “who” question, method for a “how” question) and the answer boundaries encapsulate a well-defined phrase.”
+
+Related work:
+- Dynamic chunk reader (2016):
+	- “A neural reading comprehension model that extracts a set of answer candidates of variable lengths from the document and ranks them to answer the question.”
+	- 71.0 % in squad
+
+
+	
+[MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/pdf/1608.07905.pdf) (singapore management univ. 2017)
+
+ 64.7 exact match score, word level F1 73.7% with single model on SQuAD dataset
+
+- Match lstm model was originally proposed for textual entailment problem.
+- Here we choose the question as the premise and the  passage has the hypothesis.
+- After the match lstm, they use pointers via a sequence model or boundary model for the question answering problem
+
+The network consists of three layers
+- The first layer is the lstm pre-processing layer. It has two unidirectional lstm models each operating on the passage and the question.
+- Match lstm has two unidirectional lstm Networks
+	- The forward unidirectional lstm takes the hidden state representation of the passage at position i concatenated with the weighted version of the question as input. During the attention mechanics it uses the hidden State representation of i - 1. In Backward lstm we do similar processing.
+	- At the end of the second model, we concatenate the hidden state vectors from the forward and backward lstm Network into a matrix.
+- Pointer network:
+	- In the sequence model part, we have a special value at p + 1 which indicate the stopping of answer generation  
+	- The pointer network has an lstm followed by an attention mechanism. The attention mechanism takes the last hidden state from the lstm, hidden state matrix from the previous model, to generate the probability of position i from the passage to be the answer 
+	- The boundary model produces start and the end position of the answer
+
+Loss: the negative log-likelihood function
+
+- used word embeddings from glove to initialize the model (not updated during training)
+- Boundary method works better than the sequence method
+- During the prediction phase, they limit the size of the span. Using bi-directional network the pre-processing face as well as the answer generator part helps
+- They further extend the boundary method by introducing a global search algorithm which looks at all the probabilities for the start and end word and selects the one with the highest product.
+- Longer answers are hard to predict 
+- Performance trend: When> (what= which = where) > why, because of the diverse possible answers for ‘why’ questions.
+- " Note that in the development set and the test set each question has
+around three ground truth answers. F1 scores with the best matching answers are used to compute
+the average F1 score."
+
 	
 [Text Understanding with the Attention Sum Reader Network](https://arxiv.org/pdf/1603.01547.pdf) (IBM Watson, 2016)
 
@@ -72,35 +136,6 @@ Related work:
 	- window memory + self supervision - similar performance
 	
 	
-[MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/pdf/1608.07905.pdf) (singapore management univ. 2017)
-
- 64.7 exact match score, word level F1 73.7% with single model on SQuAD dataset
-
-- Match lstm model was originally proposed for textual entailment problem.
-- Here we choose the question as the premise and the  passage has the hypothesis.
-- After the match lstm, they use pointers via a sequence model or boundary model for the question answering problem
-
-The network consists of three layers
-- The first layer is the lstm pre-processing layer. It has two unidirectional lstm models each operating on the passage and the question.
-- Match lstm has two unidirectional lstm Networks
-	- The forward unidirectional lstm takes the hidden state representation of the passage at position i concatenated with the weighted version of the question as input. During the attention mechanics it uses the hidden State representation of i - 1. In Backward lstm we do similar processing.
-	- At the end of the second model, we concatenate the hidden state vectors from the forward and backward lstm Network into a matrix.
-- Pointer network:
-	- In the sequence model part, we have a special value at p + 1 which indicate the stopping of answer generation  
-	- The pointer network has an lstm followed by an attention mechanism. The attention mechanism takes the last hidden state from the lstm, hidden state matrix from the previous model, to generate the probability of position i from the passage to be the answer 
-	- The boundary model produces start and the end position of the answer
-
-Loss: the negative log-likelihood function
-
-- used word embeddings from glove to initialize the model (not updated during training)
-- Boundary method works better than the sequence method
-- During the prediction phase, they limit the size of the span. Using bi-directional network the pre-processing face as well as the answer generator part helps
-- They further extend the boundary method by introducing a global search algorithm which looks at all the probabilities for the start and end word and selects the one with the highest product.
-- Longer answers are hard to predict 
-- Performance trend: When> (what= which = where) > why, because of the diverse possible answers for ‘why’ questions.
-- " Note that in the development set and the test set each question has
-around three ground truth answers. F1 scores with the best matching answers are used to compute
-the average F1 score."
 
 
 </details>
