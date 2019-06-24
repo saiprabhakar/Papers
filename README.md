@@ -30,6 +30,8 @@ https://arxiv.org/pdf/1606.09370.pdf
 https://github.com/thunlp/NREPapers
 </details>
 
+
+
 <details><summary> Question Answering </summary>
 	
 [Text Understanding with the Attention Sum Reader Network](https://arxiv.org/pdf/1603.01547.pdf) (IBM Watson, 2016)
@@ -69,6 +71,38 @@ Related work:
 - memNNs 2015:
 	- window memory + self supervision - similar performance
 	
+	
+[MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/pdf/1608.07905.pdf) (singapore management univ. 2017)
+
+ 64.7 exact match score, word level F1 73.7% with single model on SQuAD dataset
+
+- Match lstm model was originally proposed for textual entailment problem.
+- Here we choose the question as the premise and the  passage has the hypothesis.
+- After the match lstm, they use pointers via a sequence model or boundary model for the question answering problem
+
+The network consists of three layers
+- The first layer is the lstm pre-processing layer. It has two unidirectional lstm models each operating on the passage and the question.
+- Match lstm has two unidirectional lstm Networks
+	- The forward unidirectional lstm takes the hidden state representation of the passage at position i concatenated with the weighted version of the question as input. During the attention mechanics it uses the hidden State representation of i - 1. In Backward lstm we do similar processing.
+	- At the end of the second model, we concatenate the hidden state vectors from the forward and backward lstm Network into a matrix.
+- Pointer network:
+	- In the sequence model part, we have a special value at p + 1 which indicate the stopping of answer generation  
+	- The pointer network has an lstm followed by an attention mechanism. The attention mechanism takes the last hidden state from the lstm, hidden state matrix from the previous model, to generate the probability of position i from the passage to be the answer 
+	- The boundary model produces start and the end position of the answer
+
+Loss: the negative log-likelihood function
+
+- used word embeddings from glove to initialize the model (not updated during training)
+- Boundary method works better than the sequence method
+- During the prediction phase, they limit the size of the span. Using bi-directional network the pre-processing face as well as the answer generator part helps
+- They further extend the boundary method by introducing a global search algorithm which looks at all the probabilities for the start and end word and selects the one with the highest product.
+- Longer answers are hard to predict 
+- Performance trend: When> (what= which = where) > why, because of the diverse possible answers for ‘why’ questions.
+- " Note that in the development set and the test set each question has
+around three ground truth answers. F1 scores with the best matching answers are used to compute
+the average F1 score."
+
+
 </details>
 
 
