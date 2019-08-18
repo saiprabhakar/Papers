@@ -25,6 +25,33 @@ Word Segmentation
 Preordering    
 </details>
 
+<details><summary> Language Modelling </summary>
+
+- **Types**
+	- Auto Regressive
+		- Use multiplicative factorization to model prob.
+		- Unidirectional
+		- Examples:
+			- GPT
+			- Transformer-XL
+	- Denoising
+		- Introduces noise to model prob.
+		- Sometimes use conditional independence assumption when having more than one corrupted inputs
+		- Examples:
+			- Bert
+	- AR + Denoising
+		- Examples:
+			- XLNet
+
+- **Important Ones**
+	- ELMO
+		- Pros
+		- Cons
+			- concatenate forward and backward language models in a shallow manner, which is not sufficient for modeling deep interactions between the two directio
+
+</details>
+
+
 <details><summary> Relation Extraction </summary>
 https://arxiv.org/pdf/1606.09370.pdf
 https://github.com/thunlp/NREPapers
