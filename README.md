@@ -1053,6 +1053,24 @@ Done on MGB challenge data
 
 
 <details><summary> End-to-End </summary>
+	
+[Joint Speech Recognition and Speaker Diarization via Sequence Transduction](https://arxiv.org/pdf/1907.05337.pdf) (Google, 2019)
+	
+The authors explore combining speaker diarization and ASR into a single sequence to sequence model.The combined model achieves dramatically low diarization (speaker role detections) rate.
+
+The model predicts the speaker using lexical cues and acoustic features. Recurrent neural network transducer model is used for the end to end joint diarization cum speech recognition. The loss function used dynamic programming with forward and backward algorithm. 15k hrs of doctor patient conversation was used for training and testing the model.
+
+The model has 3 parts, 1. transcription network or the encoder which converts acoustic frames to higher-level representation, 2. prediction network which predicts next labels based on the previous non-blank symbol, 3. joint network which combines the above two outputs to produce logit which is converted to probability distribution using softmax.
+
+The acoustic model uses morphemes instead of graphemes since it is a higher duration model, to achieve this time-delay neural networks were used, it reduces the output time resolution from 10 to 80 millisecond.
+
+The architecture took 2 days to train on 128 TPU. 4k morphemes (data driven) were used. The network uses 1D temporal convolution layers, max pooling, uni and bi-directional lstms.
+
+Observation:
+The model sadly rarely misses a speaker change, but when it does, it does not correct it later, this is a side-effect of the training approach.
+The speaker roles of non doctor and patients were inferred to be the closest of the two.
+
+
 
 [Towards End-to-End Speech Recognition with Recurrent Neural Networks](http://proceedings.mlr.press/v32/graves14.pdf) (graves, 2015) 
 
