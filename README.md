@@ -25,6 +25,41 @@ Word Segmentation
 Preordering    
 </details>
 
+
+<details><summary> Niche </summary>
+	
+[Modelling and Detecting Decisions in Multi-party Dialogue](https://www.aclweb.org/anthology/W08-0125) (stanford 2008)
+
+Related work:
+- action words detection (Purver et al., 2007)
+- detecting decisions Hsueh and Moore (2007b)
+
+Propose a hierachial approach to detect subclasses and combine them
+"Our
+scheme distinguishes among three main decision dialogue act (DDA) classes: issue (I), resolution (R),
+and agreement (A). Class R is further subdivided into
+resolution proposal (RP) and resolution restatement
+(RR). "
+
+1 ."We first train one independent sub-classifier for
+the identification of each of our DDA classes,
+using features derived from the properties of
+the utterances in context"
+
+2. "To detect decision sub-dialogues, we then train
+a super-classifier, whose features are the hypothesized class labels and confidence scores from the sub-classifiers, over a suitable window." "The super-classifier is then able to “correct” the
+DDA classes hypothesized by the sub-classifiers on
+the basis of richer contextual information: if a DA is
+classified as positive by a sub-classifier, but negative
+by the super-classifier, then this sub-classification is
+“corrected”, i.e. it is changed to negative"
+
+40 meetings from AMI corpus were labelled. Used features like Utterance, Prosodic, DA (AMI dialog acts), Speaker and Context.
+Assume we have information on speaker labels, general dialog acts.
+
+</details>
+
+
 <details><summary> Language Modelling </summary>
 
 - **Types**
