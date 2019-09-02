@@ -84,6 +84,29 @@ Assume we have information on speaker labels, general dialog acts.
 		- Cons
 			- concatenate forward and backward language models in a shallow manner, which is not sufficient for modeling deep interactions between the two directio
 
+
+[Deep contextualized word representations](https://arxiv.org/pdf/1802.05365.pdf) (Allen, 2018)
+- The embeddings are learned functions of bi-directional LM
+- Coupled LM (forward + backward) objective function is used to capture context-dependent representations
+- Exposing all the internal representation of the model makes it flexible in choosing the correct level of representation for the task
+
+Related work:
+- ELMo outperforms CoVe which computes contextualized representations using neural machine translation encoder
+- ELMo switches between different words ends seamlessly unlike previous work which switch by classify each word into different sense before finding the vector 
+ 
+Working:
+- Similar to previous work, we start by context independent representations via CNN over characters.  
+- Then we use bi-directional LSTM layers to find the probability of predicting token k given context
+- Task-specific representations are then created using hidden vector representations LSTM layers, these are concatenated with CNN representations to get task enhanced ELMo vectors
+- Dropbox, residual connections and weight regulations are used during training
+
+In some cases:
+- For the ones with attention in task-RNN, when adding task specific representation to the final output layer of task-RNN helps improve the performance
+- Fine tuning bidirectional LM on domain specific data leads to significant drop in perplexity and increase in downstream task performance.
+
+Different downstream tasks prefer different LSTM layer’s output (depending on the nature of the task)
+
+
 </details>
 
 
