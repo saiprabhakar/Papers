@@ -96,7 +96,7 @@ Related work:
  
 Working:
 - Similar to previous work, we start by context independent representations via CNN over characters.  
-- Then we use bi-directional LSTM layers to find the probability of predicting token k given context
+- Then we use bi-directional LSTM layers to find the probability of predicting token k given context with softmax
 - Task-specific representations are then created using hidden vector representations LSTM layers, these are concatenated with CNN representations to get task enhanced ELMo vectors
 - Dropbox, residual connections and weight regulations are used during training
 
@@ -105,6 +105,28 @@ In some cases:
 - Fine tuning bidirectional LM on domain specific data leads to significant drop in perplexity and increase in downstream task performance.
 
 Different downstream tasks prefer different LSTM layer’s output (depending on the nature of the task)
+
+[Attention Is All You Need](https://arxiv.org/abs/1706.03762) (Google 2017)
+
+Model:
+- encoder: multi-attention + residual + ff
+- decoder: decoder multi-attention + residual + encoder-decoder multiattention + ff
+- FF is more like 1-d conv layer
+- softmax: 
+- embedder share weight with pre-softmax layer
+- scaled dot product attention
+- sinusoidal position embedding (better to handle longer input during testing)
+- dropout: residual dropout and while adding position encoding with embeddings
+- label smoothing: helps accuraccy but not perplexity :punch:
+
+Testing:
+- sometimes use checkpoint averaging during testing :punch:
+- performs well on machine translation and english consistuency parsing 
+- better than encoder-decoder and conv models
+- base model dim=512 N=6
+- large model dim=1024 N=6
+- higher/lower number of multi-head is bad
+- dropout helps
 
 
 </details>
