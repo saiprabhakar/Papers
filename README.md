@@ -25,6 +25,8 @@ Word Segmentation
 Preordering    
 </details>
 
+<!--- --------------------------------- --->
+
 
 <details><summary> Niche </summary>
 	
@@ -58,6 +60,8 @@ by the super-classifier, then this sub-classification is
 Assume we have information on speaker labels, general dialog acts.
 
 </details>
+
+<!--- --------------------------------- --->
 
 
 <details><summary> Language Modelling </summary>
@@ -137,6 +141,41 @@ https://arxiv.org/pdf/1606.09370.pdf
 https://github.com/thunlp/NREPapers
 </details>
 
+<!--- --------------------------------- --->
+
+<details><summary> Adversarial methods </summary>
+
+[ADVERSARIAL TRAINING METHODS FOR SEMI-SUPERVISED TEXT CLASSIFICATION](https://openreview.net/pdf?id=r1X3g2_xl) (2017, Google Brain and Kyoto Univ)
+
+Notes:
+- use adversatial sample and virtual adversarial samples to regularize.
+- adversatial sample: adding a peturbation r, that max p(y|x+r;theta)
+	- making model robust to worst case peturbation at x
+	- use linearization to solve for x using gradient descent
+- vir. adversatial sample: adding a peturbation r, that max KL [p(.|x;theta) || p(.|x+r;theta)]
+	- make the model resistant to perturbations in directions to which it is most sensitive on the current model
+	- solve with approximation using back prop.
+- applied on word embeddings instead of words since they are discrete
+
+
+Analysis:
+- The embeddinds are able to push the distance between workds like good and bad
+- increases the model's performance marginally
+- better than applying random noise 
+	- random noise on average are orthogaonal to cost which hwere we maximize the cost with peturbations
+
+Related work:
+- "Adversarial and virtual adversarial training resemble some semi-supervised or transductive SVM
+approaches (Joachims, 1999; Chapelle & Zien, 2005; Collobert et al., 2006; Belkin et al., 2006) in
+that both families of methods push the decision boundary far from training examples (or in the case
+of transductive SVMs, test examples). However, adversarial training methods insist on margins on
+the input space , while SVMs insist on margins on the feature space defined by the kernel function.
+This property allows adversarial training methods to achieve the models with a more flexible function
+on the space where the margins are imposed"
+
+
+</details>
+<!--- --------------------------------- --->
 
 
 <details><summary> Question Answering </summary>
@@ -246,6 +285,12 @@ Related work:
 
 
 </details>
+
+
+
+
+<!--- --------------------------------- --->
+
 
 
 <details><summary> Information Extraction </summary>
@@ -361,6 +406,7 @@ Some modification in loss function and regularization which might be interesting
 
 
 
+<!--- --------------------------------- --->
 
 
 
@@ -609,6 +655,7 @@ prosody-based emphasis detection :punch:
 
 
 
+<!--- --------------------------------- --->
 
 
 
@@ -882,6 +929,9 @@ health care hand eng feature rep paperref 32 16 36 :punch:
 
 
 
+<!--- --------------------------------- --->
+<!--- --------------------------------- --->
+<!--- --------------------------------- --->
 
 
 
