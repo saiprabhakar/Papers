@@ -120,7 +120,12 @@ Model:
 - softmax: 
 - embedder share weight with pre-softmax layer
 - scaled dot product attention
+	- Q, K, V are linear projections of hidden state sequences
+	- ith attention head (output value) if calculating by again liearly projecting Q, K, V to a lower dimentions space, then calculating attention
+	- all the heads are concatenated and projected to get the final value
+	- encoder-decoder attention uses Q from decoder and K, V from encoder
 - sinusoidal position embedding (better to handle longer input during testing)
+	- gives model temporal cues or bias on where to attend
 - dropout: residual dropout and while adding position encoding with embeddings
 - label smoothing: helps accuraccy but not perplexity :punch:
 
@@ -133,8 +138,37 @@ Testing:
 - higher/lower number of multi-head is bad
 - dropout helps
 
+[Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context](https://arxiv.org/abs/1901.02860) (Google, CMU, 2019)
+
+Aim:
+- solve context fragmentation
+- 80% longer context thatn RNNs
+
+Notes:
+- freeze (stop gradient) of previous segment's hidden state at layer n-1 is used along with current segment's hidden state at layer n-1 (concat) in layer n.
+	- hence maximum length of the context is propotional to the number of layers = O(NxL)
+- using relative positional embedding instead of absolute to incorporate the information about different segments.
+	- to do this we add the relative positional embeddings directly to the attention
+	
+Questions:
+- Do we use positional embedding at all layers? in both encoder and decoder?
+- use cached hidden states for both encoder and decoder?
+
+
+Related work:
+- speeding up softmax graves 2016a :punch:
+- enridhing ouptut distribution 
+- improving regularization and optimization algorithm
+- LSTM uses 200 context words on average
+
+
 
 </details>
+
+
+<!--- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --->
+
+
 
 
 <details><summary> Relation Extraction </summary>
@@ -142,7 +176,11 @@ https://arxiv.org/pdf/1606.09370.pdf
 https://github.com/thunlp/NREPapers
 </details>
 
+
+
 <!--- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --->
+
+
 
 <details><summary> Adversarial methods </summary>
 
