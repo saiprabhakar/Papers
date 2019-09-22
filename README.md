@@ -115,10 +115,13 @@ Different downstream tasks prefer different LSTM layer’s output (depending on 
 
 Model:
 - encoder: multi-attention + residual + ff
-- decoder: decoder multi-attention + residual + encoder-decoder multiattention + ff
-- FF is more like 1-d conv layer
+- decoder: decoder multi-attention + residual + encoder-decoder multiattention + position-wise ff
+	- decoder self-attention:
+		- modified to prevent attending subsequent positions (Maksing)
+		- output embeddigns are offest by one => uses knowledge from output positions <i
+- Position-wise FF is more like 1-d conv layer
 - softmax: 
-- embedder share weight with pre-softmax layer
+	- embedder share weight with pre-softmax layer
 - scaled dot product attention
 	- Q, K, V are linear projections of hidden state sequences
 	- ith attention head (output value) if calculating by again liearly projecting Q, K, V to a lower dimentions space, then calculating attention
@@ -126,6 +129,7 @@ Model:
 	- encoder-decoder attention uses Q from decoder and K, V from encoder
 - sinusoidal position embedding (better to handle longer input during testing)
 	- gives model temporal cues or bias on where to attend
+	- added to the input embeedings at the bottom of the encoder-decoder stack (encoder's input)
 - dropout: residual dropout and while adding position encoding with embeddings
 - label smoothing: helps accuraccy but not perplexity :punch:
 
@@ -145,13 +149,14 @@ Aim:
 - 80% longer context thatn RNNs
 
 Notes:
+- cacheing hidden states is analogous to memory networks
 - freeze (stop gradient) of previous segment's hidden state at layer n-1 is used along with current segment's hidden state at layer n-1 (concat) in layer n.
 	- hence maximum length of the context is propotional to the number of layers = O(NxL)
 - using relative positional embedding instead of absolute to incorporate the information about different segments.
 	- to do this we add the relative positional embeddings directly to the attention
+	- modified with matrix algebra
 	
 Questions:
-- Do we use positional embedding at all layers? in both encoder and decoder?
 - use cached hidden states for both encoder and decoder?
 
 
