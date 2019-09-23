@@ -28,13 +28,28 @@ Preordering
 <!--- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --->
 
 
-<details><summary> Niche </summary>
+<details><summary> Dialog Understanding </summary>
 	
 Dialog dataset:
-DSTC:
-- https://www.microsoft.com/en-us/research/event/dialog-state-tracking-challenge/
-- both human-human/computer dialogs
-- with some disfluencies
+
+- DSTC:
+	- https://www.microsoft.com/en-us/research/event/dialog-state-tracking-challenge/
+	- both human-human/computer dialogs (microsoft, 2017?)
+	- with some disfluencies
+- Coached Conversational Preference Elicitation (CCPE) (google, 2019):
+	- https://ai.googleblog.com/2019/09/announcing-two-new-natural-language.html?m=1
+	- human - human (personal assistant)
+	- conversations about people’s movie preferences
+	- include errors and disfluencies
+	- collected using wizard of oz method
+- Taskmaster-1 English dialog datasets (google, 2019):
+	-  https://ai.googleblog.com/2019/09/announcing-two-new-natural-language.html?m=1
+	- 7.7k written “self-dialog” entries and ~5.5k 2-person, spoken dialogs
+	- human - human (personal assistant)
+	- conversations about people’s movie preferences, ride ordering ...
+	- include errors and disfluencies
+	- collected using wizard of oz method
+	- also have single human conversation (for managing cost, diversity, volume)
 	
 [Modelling and Detecting Decisions in Multi-party Dialogue](https://www.aclweb.org/anthology/W08-0125) (stanford 2008)
 
