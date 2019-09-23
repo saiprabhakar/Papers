@@ -30,6 +30,12 @@ Preordering
 
 <details><summary> Niche </summary>
 	
+Dialog dataset:
+DSTC:
+- https://www.microsoft.com/en-us/research/event/dialog-state-tracking-challenge/
+- both human-human/computer dialogs
+- with some disfluencies
+	
 [Modelling and Detecting Decisions in Multi-party Dialogue](https://www.aclweb.org/anthology/W08-0125) (stanford 2008)
 
 Related work:
