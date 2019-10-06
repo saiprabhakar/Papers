@@ -74,3 +74,25 @@ Using events we can find:
 - The abstractness of a novel
 - prestige
 - Event timeline
+
+</details>
+
+
+<details><summary>
+Joan Bresnan on Lexical Sharing:
+</summary>
+
+CMU 2019, https://lti.cs.cmu.edu/lti-colloquium
+
+Theory on Lexical Sharing:
+- Verb + weak pronouns structures have morphophonological and syntactic characteristics of multi-word lexicalization (lexical sharing)
+- Consistent with usage-based theories of lexicalization, those with highest usuage probabilities (=lowest informativeness) have the highest rate of encliticization and fusion.
+- They are at a point in grammaticalization cline between syntactically independent, prosodically reduced pronouns and morphosyntactic enclitics
+
+Modeled by hybrid grammar for spoken syntax:
+- Lexical sharing can be modelled by LFG (Lexical functional grammar (LFG) is a constraint-based grammar framework in theoretical linguistics.)
+- a probabilistic metal lexion
+- lexical sharing traces similar memory traces
+
+</details>
+
