@@ -990,8 +990,24 @@ Other baselines:
   
 health care hand eng feature rep paperref 32 16 36 :punch:  
 
-
 :boom:
+
+[Extracting UMLS Concepts from Medical Text Using General and
+Domain-Specific Deep Learning Models](https://arxiv.org/pdf/1910.01274.pdf) (Canada, 2019)
+
+Outline:
+- clinical NER on large number of classes
+- MedMentions dataset which have more instances and categories than i2b2
+- investigates Contextual vs. Non-Contextual Word Embeddings and various architectures
+- investigates general vs trained embeddings
+- BERT (NCBI BERT + trained on indomain dataset) + BiLSTM is better than ELMO + bi-LSTM + CRF and BERT + Linear final layer
+- general (NCBI/BioBert) BERT and indomain BERT have different errors, hence stacking them improves performance a little
+- Finetunning embeddings did not improve i2b2 task by a significan amount as it is very simple
+- MedMentions need more info from context than i2b2 because about 8% of the entities have overlapping categories in MedMentions
+
+
+Paper has good analysis and extensive comparisons 
+
 </details>
 
 
