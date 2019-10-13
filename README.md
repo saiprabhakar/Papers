@@ -247,6 +247,15 @@ on the space where the margins are imposed"
 
 
 <details><summary> Question Answering </summary>
+	
+Metrics:
+- Answer Generation
+	- F1
+	- EM
+- Question Generation
+	- Blue
+	- QA_F1
+	- PPL
 
 [DYNAMIC COATTENTION NETWORKS FOR QUESTION ANSWERING](https://arxiv.org/pdf/1611.01604.pdf) (salesforce research, 2018)
 
@@ -348,8 +357,31 @@ Related work:
 
 - memNNs 2015:
 	- window memory + self supervision - similar performance
-	
-	
+
+
+[A Joint Model for Question Answering and Question Generation](https://arxiv.org/pdf/1706.01450.pdf) (Microsoft, 2017)
+
+Notes:
+- Model both question answering and question generation
+- Question generation is usually abstractive task, and more than one question can be found given an answer and document.
+- Modeled both using pointer-softmax + seq-to-seq
+- Input: document, quesiton/answer sentences, question gen mode?, answer gen mode? 
+
+Encoder:
+- word + character level embeddings for both condition and document
+- in a-gen mode we use hidden states from document and condition
+- in q-gen mode we use hidden states from document and use extractive condition encoding hidden state (To better encode the condition, we also extract the encodings of the document words that appear in the condition
+sequence. This procedure is particularly helpful in q-gen
+mode, where the condition (answer) sequence is typically
+extractive. These extracted vectors are then fed into a condition aggregation BiLSTM to produce the extractive condition encoding"
+
+Decoder:
+- pointer-generator kind decoder
+
+Baselines:
+- A-gen: Match lstms
+- proposed model trained only for A-gen
+- proposed model trained only for Q-gen
 
 
 </details>
