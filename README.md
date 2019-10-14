@@ -249,13 +249,58 @@ on the space where the margins are imposed"
 <details><summary> Question Answering </summary>
 	
 Metrics:
-- Answer Generation
+- Answer Generation (span)
 	- F1
 	- EM
+- Answer Generation (abstractive)
+	- Rouge-L
+	- Phrase aware evaluations (pa-BLUE)
+	-  the cosine similarity
+between bag-of-words embedding of the query and
+the candidate span using pre-trained GloVe word
+embeddings
 - Question Generation
 	- Blue
 	- QA_F1
 	- PPL
+- Numeric Answers:
+	- F1
+
+Datasets:
+- Narrative QA
+	- Human generated
+- SQuaD/SearchQA
+	- span
+- DuReader
+	- Human Generated
+- MS MARCO
+	- Human Generated
+- Race/ARC
+	- Multiple Choice
+- MultiQA
+	- ?
+- QUOREF:
+	- Span
+
+In light of recent work exposing predictive artifacts in crowdsourced NLP datasets (Gururangan
+et al., 2018; Kaushik and Lipton, 2018, inter alia),
+we estimate the effect of predictive artifacts by
+training BERT QA and XLNet QA to predict a single start and end index given only the passage as
+input (passage-only).
+
+[Adversarial Domain Adaptation for Machine Reading Comprehension](https://arxiv.org/pdf/1908.09209.pdf) (Microsoft, 2019)
+
+Unsupervised domain transfer
+Notes:
+- Generate pseudo question for unlabelled passages
+- domain classifier
+
+Models:
+- pointer gen for question generations
+- span based answer classifier
+- binary discriminator for Domain classifier
+
+[SynNet](https://arxiv.org/abs/1706.09789) (Microsoft, 2017)
 
 [DYNAMIC COATTENTION NETWORKS FOR QUESTION ANSWERING](https://arxiv.org/pdf/1611.01604.pdf) (salesforce research, 2018)
 
@@ -747,6 +792,59 @@ challenges:
 - speech recognition errors
 
 prosody-based emphasis detection :punch:
+
+
+
+[Bottom-Up Abstractive Summarization](https://arxiv.org/pdf/1808.10792.pdf) (Harvard, 2018)
+
+Notes:
+- Bottom-up attention + abstractive summ
+- Content selection: Making constraints on which tokens can be copied
+- Data effiecient: <1% training data to get good results
+
+Content selections:
+- lit shows that using word rep is better for sequence tagging
+- content selection using embeddings is trained seperately
+- when computing copying attention using only words from content selection
+
+Model:
+- add coverage penalty
+- Length normalization to generate longer sents
+- Dropout in ELMo and not in model
+- gradient clipping
+- CopyTransformer
+	- Randomly choose on attention-head to get copy distribution
+
+Obeservations:
+- Decrease in Rouge-2 score indicates lack of fluency and gramaticality of sents
+- increase in % of copied words after content selection
+- Performed analysis via POS tagging on generate sents
+	- higher no. of tense/form varied verbs (from the source)
+	- higher no. of morphologically varied nouns from source 
+
+
+Related word:
+- Non-neural
+	- select text then compress
+- Extractive
+	- extracting then ordering sents (often overextracts)
+	- word level extractive (not grammatical)
+	- key phrase extraction (not grammatical but match with human summarization)
+- Abstractive
+	- Pointer Gen
+	- + Coverage/trigram repetetion avoidance
+	- + RL-based training (slow and difficult to tune)
+- Abs + ext
+	- select document then abs sum
+		- two pass
+	- Read in two pass and first pass's bias during second pass
+	- hier attention
+	- generate keywords to guide summarization
+	- loss function to include specific keywords
+	- content selection on sent level
+	- extract sents then compress them
+	- graph attention to attend one sents at a time
+	- modulating atttnetion based on how likely a sent is included in the summ
 
 </details>
 
