@@ -288,6 +288,35 @@ we estimate the effect of predictive artifacts by
 training BERT QA and XLNet QA to predict a single start and end index given only the passage as
 input (passage-only).
 
+
+[A Generative Approach to Question Answering](https://arxiv.org/pdf/1711.06238.pdf) (Microsoft, 2018)
+
+Notes:
+- pointer generator applied to QA
+- abstractive QA
+- Uses GRU instead of LSTM
+
+
+[Learning to Collaborate for Question Answering and Asking](https://www.aclweb.org/anthology/N18-1141/) (Microsoft, 2018)
+
+Notes:
+- use QG to improve QA 
+- use QA to improve QG
+- generalizing GAN and GDAN
+:punch:
+
+[GENERATIVE QUESTION ANSWERING: LEARNING TO
+ANSWER THE WHOLE QUESTION](https://openreview.net/pdf?id=Bkx0RjA9tX) (FB, 2019)
+
+Notes
+- generative models of joint distribution of questions and answers.
+- trained to expain the whole question
+- learn priors over answers, generate question given answer (conditional lm)
+- works on text and image domains
+- using a biased training data model works well on adversarial testing data
+
+:punch:
+
 [Adversarial Domain Adaptation for Machine Reading Comprehension](https://arxiv.org/pdf/1908.09209.pdf) (Microsoft, 2019)
 
 Unsupervised domain transfer
