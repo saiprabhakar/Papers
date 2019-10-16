@@ -625,6 +625,29 @@ Trends:
 - Teacher forcing ratio.
 
 
+[ABSTRACTIVE DIALOGUE SUMMARIZATION WITH
+SENTENCE-GATED MODELING OPTIMIZED BY DIALOGUE ACTS](https://www.csie.ntu.edu.tw/~yvchen/doc/SLT18_DialSum.pdf) (NTU, 2018)
+
+Notes:
+- combines dialog acts classification and dialog summarization task to improve the later on AMI corpus
+- good related work on 
+	- discourse information classification
+	- speech summarization
+	- dialog act classification
+	- dialog datasets
+
+:punch:
+
+[A Unified Model for Extractive and Abstractive Summarization
+using Inconsistency Loss](https://arxiv.org/pdf/1805.06266.pdf) (NTSU, 2018)
+
+Notes:
+- combines extractive and abstractive summarization
+- hierachial attention in pointer (sentence level attention guide which words can be copied) :punch:
+- inconsistency loss between two levels of attention
+
+:punch:
+
 [Automatic Community Creation for Abstractive Spoken Conversation Summarization](https://www.aclweb.org/anthology/W17-4506) (Italy, 2017)
 
 Poorly written paper. \
