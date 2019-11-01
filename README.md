@@ -22,7 +22,25 @@ Pipelining(Using an auxiliary task)
 Language Identification  
 POS tagging  
 Word Segmentation  
-Preordering    
+Preordering  
+
+[To Tune or Not to Tune?
+Adapting Pretrained Representations to Diverse Tasks](https://www.aclweb.org/anthology/W19-4302.pdf) (Allen AI 2019)
+
+ Notes:
+- Compares finetunning and pretraining (combination of hidden layers reps) of ELMO and BERT for variety of tasks.
+- Pretraining is better for ELMo and reverse is true for BERT when there is difference in alignment of source and target tasks,
+	-  Measured similarity between target domains and source using Jensen-Shannon divergence based on term distributions
+- No significant difference between them when the tasks are aligned
+- Additional parameters (BILSTM final layer) help pretraining but hurt finetunning
+- During finetunning they also looks at how each layer's rep change over time compared to pretrained rep; measured using:
+	- diagnostic classifier:
+		- classifier at each layer's representation
+	- mutual informations (feasible with recent MI estimator ensemble dependency graph estimator (EDGE; 2018))
+		- MI for single sentence classification if concentrated in the last layer
+		- It gradually develop for pair sentence classification task
+- Claims that LSTM are not good for pari sentence classficaiton task
+
 </details>
 
 <!--- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --------------------------------- --->
