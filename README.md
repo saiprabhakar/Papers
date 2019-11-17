@@ -1631,6 +1631,60 @@ https://arxiv.org/abs/1708.02691
 
 The noisy channel model is a framework used in spell checkers, question answering, speech recognition, and machine translation. In this model, the goal is to find the intended word given a word where the letters have been scrambled in some manner.
 
+
+[Efficient parametrization of multi-domain deep neural networks](https://arxiv.org/pdf/1803.10082.pdf) (oxford 2018)
+
+Notes:
+- Investigates adapters (parallel and series) for parameter effecient transfer learning
+- compression techniques to reduce the adapter's weights further
+- multi-domain
+- domain compression
+
+Related work:
+- multi-task:
+	- learn multiple task by sharing info and computation
+	- early work shares the first few layers
+- multi-domain:
+	- residual adapters
+- parameterized Multi-task learning:
+	- dynamically generating DNN weights given task id
+	- low-rank decomposition fo filters then new net is lin combination of low rank filters
+	- tensor factorization methods
+	- soft ordering - contribution of each fiters
+- domain adaptation:
+	- minimize domain discrepancy
+	- source classifier = target classifier + residual classifier (jointly learn adaptive classifier and transferable features)
+	- explicit parameterization of domain-generic and domain-specific that learns to extract image representations from the partitioned subspaces.
+	- a meta-learning method that trains any given model to be more robust to domain shift.
+- life-long learning:
+	- learning sequencially (can cause catastrophic forgetting)
+	- freeze parameters of old and train new
+	- retain response of old task
+	- keep features and weights close the old one
+
+Adapters:
+- series
+	- can be interpreted as the low rank decomposigiton of a new fiterbank using old one as basis (scaled be adapters)
+- parallel 
+	- can be interpreted as the low dimentional parameterization of new fiterbank with old and adapter 
+	- affine decomposition
+Regularization:
+- shrinking:
+	- setting reg. on  adapter param.
+- dropout
+
+Cross-domain adapter compression:
+- compress adapter parm of diff task in a single svd
+- also acts as cross-domain regularization
+- in svd after training partly we can freeze U and Sigma and train only V (to save computation and overfitting)
+
+Results:
+- parallel is better than series
+- can be used as plug-and-play
+- adapters are benificial in last block
+- dropout needs wider net to be effective in this case
+- higher weight decay for smaller datasets
+
 [Async stoc gradient descent](http://www.ijcai.org/Proceedings/16/Papers/265.pdf)
 :boom:
 
