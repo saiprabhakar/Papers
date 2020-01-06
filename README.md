@@ -299,6 +299,9 @@ Datasets:
 	- ?
 - QUOREF:
 	- Span
+- TREC: QA and Question  Classification
+	- https://cogcomp.seas.upenn.edu/Data/QA/QC/
+	- https://cogcomp.seas.upenn.edu/Data/QA/
 
 In light of recent work exposing predictive artifacts in crowdsourced NLP datasets (Gururangan
 et al., 2018; Kaushik and Lipton, 2018, inter alia),
